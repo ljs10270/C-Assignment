@@ -1,0 +1,775 @@
+실전문제
+
+10-1
+include <iostream>
+using namespace std;
+
+int main()
+{
+	int x, y, *p, *q;
+	p = &x;
+	q = &y;
+	*p = 100;
+	*q = 200;
+
+	cout << "x + y = " << *p + *q << endl;
+	cout << "x * y = " << x * y << endl;
+}
+
+10-2
+#include <iostream>
+using namespace std;
+
+int main()
+{
+	int x, *p;
+	x = 10;
+	p = &x;
+	*(p + 1) = 300;
+	
+	cout << "변수 x의 주소는 " << p << endl;
+	cout << "변수 x의 저장된 값은 " << x << endl;
+	cout << "변수 x의 다음 주소는 " << p + 1 << endl;
+	cout << "변수 x의 다음 주소에 저장된 값은 " << *(p + 1) << endl;
+}
+
+10-3
+#include <iostream>
+using namespace std;
+
+int main()
+{
+	char p1[] = "개인용 컴퓨터";
+	char p2[] = "IBM PC";
+
+	cout << p1 << " " << p2 << endl;
+}
+
+10-4
+#include <iostream>
+using namespace std;
+
+int main()
+{
+	int x[10] = { 1,2,3,4,5,6,7,8,9,10 };
+	int s, w, i, *p;
+	s = 1;
+	w = 0;
+	p = x;
+
+	for (i = 1; i < 10; i += 2)
+	{
+		w += *(p + i);
+	}
+
+	for (i = 0; i < 10; i += 2)
+	{
+		s *= *(p + i);
+	}
+
+	cout << "홀수 요소에 있는 값의 합은 " << w << endl;
+	cout << "짝수 요소에 있는 값의 합은 " << s << endl;
+}
+
+10-5
+#include <iostream>
+using namespace std;
+
+int main()
+{
+	char x[] = "i am a boy";
+	char *p;
+	p = x;
+	while (*p)
+	{
+		cout << char(*p - 32);
+		p++;
+	}
+	cout << endl;
+}
+
+10-6
+#include <iostream>
+using namespace std;
+
+int main()
+{
+	char x[] = "Clanguageprogram";
+	char *p;
+	p = x;
+	
+	for (p = x; p < x + 16; p++)
+	{
+		cout << p << endl;
+	}
+}
+
+10-7 //오류
+#include <iostream>
+using namespace std;
+
+int add(int a, int b);
+int sub(int a, int b);
+int mul(int a, int b);
+int div(int a, int b);
+
+
+int main()
+{
+	int (*fun)(int x, int y);
+	int a, b;
+	char c;
+
+	cout << "숫자 연산자 숫자 순으로 입력하시오. : ";
+	cin >> a >> c >> b;
+
+	switch(c)
+	{
+	case '+':
+		fun = add;
+		break;
+
+	case '-':
+		fun = sub;
+		break;
+
+	case '*':
+		fun = mul;
+		break;
+
+	case '/':
+		fun = div;
+		break;
+	}
+	cout << a << " " << c << " " << b << " = " << fun(a, b);
+}
+
+int add(int a, int b)
+{
+	return a + b;
+}
+
+int sub(int a, int b)
+{
+	return a - b;
+}
+
+int mul(int a, int b)
+{
+	return a * b;
+}
+
+int div(int a, int b)
+{
+	return a / b;
+}
+
+10-8
+#include <iostream>
+using namespace std;
+
+void swap(int *pa, int *pb)
+{
+	int temp;
+	cout << "교환하기 전의 *pa = " << *pa << ", *pb = " << *pb << endl;
+	temp = *pa;
+	*pa = *pb;
+	*pb = temp;
+	cout << "교환 후의 *pa = " << *pa << ", *pb = " << *pb << endl;
+}
+
+int main()
+{
+	int x = 6, y = 8;
+	cout << "교환하기 전의 x = " << x << ", y = " << y << endl;
+	swap(&x, &y);
+	cout << "교환 후의 x = " << x << ", y = " << y << endl;
+}
+
+10-9
+#include <iostream>
+using namespace std;
+
+int max(int *base, int size)
+{
+	int maxnum = 0;
+	int i;
+	for (i = 0; i < size; i++)
+	{
+		if (maxnum < *(base + i))
+				maxnum = *(base + i);
+	}
+	return maxnum;
+}
+
+void main()
+{
+	int a[5], maxnum;
+	int *base;
+	int i;
+	base = a;
+
+	for (i = 0; i < 5; i++)
+	{
+		cout << i + 1 << "번째 수 : ";
+		cin >> *(base + i);
+	}
+	maxnum = max(base, 5);
+	cout << "최대값 : " << maxnum << endl;
+}
+
+10-10
+#include <iostream>
+#include <time.h>
+#include <stdlib.h>
+using namespace std;
+
+int main()
+{
+	char arr[3][3];
+	char *p;
+	int i, j;
+	p = arr[0];
+	srand(time(NULL));
+	
+	for (i = 0; i < 9; i++)
+		*(p + i) = rand() % 126;
+
+	cout << "-- ASCII문자(ASCII번호) --" << endl;
+
+	for (i = 1; i <= 9; i++) // i = 0 이면 바로 줄바꿈이 되어 첫줄 하나 출력방지를 위해 i = 1부터 시작
+	{
+		cout << *(p + i-1) << "(" << int(*(p + i-1)) << ")" << "\t";
+		if (i % 3 == 0)
+			cout << endl;
+	}
+}
+
+연습문제
+10-11
+#include <iostream>
+#include <string.h>
+using namespace std;
+
+int main()
+{
+	char a[] = { "Hello Point!!" };
+	int i, n;
+
+	n = strlen(a);
+
+	for (i = n; i >= 0; i--)
+	{
+		cout << a[i];
+	}
+
+}
+
+10-12
+#include <iostream>
+#include <string.h>
+using namespace std;
+
+int main()
+{
+	char a[] = { "Hello C Language Wrld" };
+	char b[] = { "Hello C Language World" };
+	char *p1 = a;
+	char *p2 = b;
+	int n;
+
+	n = strlen(b);
+
+	for (int i = 0; i < n; i++)
+	{
+		if (*(p2 + i) != *(p1 + i))
+		{
+			cout << i + 1 << "번째 문자가 다르다." << endl;
+			cout << "p1의 " << i + 1 << "번째 문자 : " << *(p1 + i) << endl;
+			cout << "p2의 " << i + 1 << "번째 문자 : " << *(p2 + i) << endl;
+			break;
+		}
+	}
+}
+
+10-13
+#include <iostream>
+#include <string.h>
+using namespace std;
+
+int mylen(char *ch);
+
+int main()
+{
+	char a[] = { "None but The Brave deserves the Fair" };
+	char b, *p;
+	p = a;
+	int len;
+
+	cout << "문자열 : " << a << endl;
+	cout << "찾을 문자 입력 : ";
+	cin >> b;
+
+	len = mylen(a);
+
+	for (int i = 0; i < len; i++)
+		if (*(p + i) == b)
+		{
+			cout << "일치하는 문자의 위치 : " << i + 1 << endl;
+			cout << "문자의 길이 : " << len << endl;
+			break;
+		}
+}
+
+int mylen(char *ch)
+{
+	return strlen(ch);
+}
+
+10-14
+#include <iostream>
+#include <string.h>
+#include <stdlib.h>
+#include <time.h>
+#define SIZE 10
+using namespace std;
+
+int main()
+{
+	int a[SIZE], i, j, b;
+	int *p = a;
+
+	srand(time(NULL));
+
+	for (i = 0; i < 10; i++)
+	{
+		*(p + i) = rand() % 10;
+	}
+
+	while (true)
+	{
+		cout << endl;
+		cout << "---------------------------------" << endl;
+		cout << "1.정렬   2.순서바꾸기   3.종료" << endl;
+		cout << "---------------------------------" << endl;
+		cout << "원하는 기능을 선택하시오.  :";
+		cin >> b;
+		cout << endl;
+
+		switch (b)
+		{
+		case 1:
+			int temp;
+
+			cout << "----정렬 전 배열----" << endl;
+			for (i = 0; i < SIZE; i++)
+			{
+				cout << *(p + i) << " ";
+			}
+			cout << endl << endl;
+			cout << "----정렬 후 배열----" << endl;
+			for (i = 0; i < SIZE - 1; i++)
+				for (j =  i + 1; j < SIZE; j++)
+				{
+					if (*(p + i) > *(p + j))
+					{
+						temp = *(p + i);
+						*(p + i) = *(p + j);
+						*(p + j) = temp;
+					}
+				}
+			for (i = 0; i < SIZE; i++)
+				cout << *(p + i) << " ";
+			cout << endl;
+			main();
+		
+
+		case 2:
+			temp = 0;
+			cout << "----교환 전 배열----" << endl;
+			for (i = 0; i < SIZE; i++)
+			{
+				cout << *(p + i) << " ";
+			}
+			cout << endl << endl;
+			for (i = 0; i < 5; i++)
+				for (j = 5; j < SIZE; j++)
+					if (j - i == 5)
+					{
+						cout << "배열의 " << i << "번째와 " << j << "번째 요소 교환" << endl;
+						temp = *(p + i);
+						*(p + i) = *(p + j);
+						*(p + j) = temp;
+					}
+			cout << endl;
+			cout << "----교환 후 배열----" << endl;
+			for (i = 0; i < SIZE; i++)
+				cout << *(p + i) << " ";
+			cout << endl;
+			main();
+
+		case 3:
+			break;
+		}
+		break;
+	}
+}
+
+10-15
+#include <iostream>
+using namespace std;
+#define N 4
+
+void print_arr(int *arr);
+void percentage(int *arr);
+
+int main()
+{
+	int count[N] = { 42,37,83,33 };
+	int *p = count;
+
+	cout << "인원수:  ";
+	for (int i = 0; i < N; i++)
+	{
+		cout << *(count + i) << " ";
+	}
+	cout << endl << endl;
+
+	percentage(p);
+	print_arr(p);
+}
+
+void percentage(int *arr)
+{
+	for (int i = 0; i < N; i++)
+		*(arr + i) /= 2;
+}
+
+void print_arr(int *arr)
+{
+	cout << "백분율:  ";
+	for (int i = 0; i < N; i++)
+	{
+		cout << *(arr + i) << " ";
+	}
+	cout << endl;
+}
+
+10-16
+?
+
+10-17
+#include <iostream>
+#include <string.h>
+using namespace std;
+
+void touppor(char *p);
+void tolowe(char *p);
+
+int main()
+{
+	char a[50];
+
+	printf("문자열을 입력하시오 :");
+	gets_s(a);    //cin 은 문자열 입력시 띄어쓰기 인식 불가 과제떄 배우고 바꾸기
+
+	touppor(a);
+	tolowe(a);
+}
+
+void touppor(char *p)
+{
+	cout << "대문자로 변환한 결과 : " << strupr(p) << endl;
+}
+
+void tolowe(char *p)
+{
+	cout << "소문자로 변환한 결과 : " << strlwr(p) << endl;
+}
+
+10-18
+-문제 보기 잘못되었음
+
+10-19
+#include <iostream>
+using namespace std;
+#define SIZE 10
+
+void print_arr(int *arr);
+int index_of_max(int *arr);
+
+int main()
+{
+	int n;
+	int quiz[SIZE] = { 15,4,8,9,6,13,12,10,9,11 };
+	int *p = quiz;
+
+	print_arr(p);
+	n = index_of_max(p);
+
+	cout << "quiz[" << n << "] = " << *(p + n) << endl;
+
+}
+
+void print_arr(int *arr)
+{
+	cout << " 퀴즈 점수 목록: ";
+
+	for (int i = 0; i < SIZE; i++)
+	{
+		cout << *(arr + i) << " ";
+	}
+	cout << endl;
+}
+
+int index_of_max(int *arr)
+{
+	int max = 0;
+	int n;
+
+	cout << " 퀴즈 최고 점수: ";
+
+	for (int i = 0; i < SIZE; i++)
+	{
+		if (*(arr + i) > max)
+		{
+			max = *(arr + i);
+			n = i;
+		}
+	}
+	return n;
+}
+
+10-20
+#include <iostream>
+using namespace std;
+#define SIZE 10
+
+void array_copy(int *a, int *b, int size);
+
+int main()
+{
+	int a[SIZE];
+	int b[SIZE];
+	int *p = a;
+	int *q = b;
+
+	cout << "2개의 정수배열을 입력해주세요<입력을 마치려면 -1 입력>" << endl;
+
+	for (int i = 0; i < SIZE; i++)
+	{
+		cout << "첫번째 배열의 " << i + 1 << "번째 수 : ";
+		cin >> *(p + i);
+
+		if (*(p + i) == -1)
+			break;
+	}
+
+	array_copy(p, q, SIZE);
+}
+
+void array_copy(int *a, int *b, int size)
+{
+	cout << "두번째 배열 : ";
+
+	for (int i = 0; i < size; i++)
+	{
+		if (*(a + i) > -1)
+		{
+			*(b + i) = *(a + i);
+			cout << *(b + i) << " ";
+		}
+	}
+	cout << endl;
+}
+
+10-21
+#include <iostream>
+#include <stdlib.h>
+#include <math.h>
+#define SIZE 10
+using namespace std;
+
+double mean_f(int *a);
+double std_dev(int *dim, int s);
+
+int main()
+{
+	int a[SIZE], i;
+	int *p = a;
+	double mean, sumsq, stdev, v;
+
+	cout << endl;
+	cout << "초기화 된 배열 출력" << endl;
+
+	for (i = 0; i < SIZE; i++)
+	{
+		*(p + i) = rand() % 100;
+		cout << "  " << *(p + i) << "  ";
+	}
+	cout << endl;
+	cout << "a[]의 시작 주소 : " << p << endl;
+
+	mean = mean_f(p);
+	sumsq = std_dev(p, SIZE);
+
+	stdev = sqrt(sumsq / SIZE - pow(mean, 2));
+	v = sumsq / SIZE - pow(mean, 2);
+
+	cout << endl;
+	cout << "a[]의 시작 주소 : " << p << endl;
+	cout << endl;
+
+	cout << "평균 = " << mean << "   분산 = " << v << "   표준편차 = " << stdev << endl;
+
+	for (i = 0; i < SIZE; i++)
+	{
+		cout << "d[" << i << "] = arr[" << i << "] - " << mean << " = " << *(p + i) - mean << endl;
+	}
+}
+
+double mean_f(int *a)
+{
+	int i;
+	double sum = 0, mean;
+
+	for (i = 0; i < SIZE; i++)
+	{
+		sum += *(a + i);
+	}
+	mean = sum / SIZE;
+
+	return mean;
+}
+
+double std_dev(int *dim, int s)
+{
+	int i;
+	double sumsq = 0;
+
+	cout << endl;
+	cout << "dim[]의 시작 주소 : " << dim << endl;
+
+	for (i = 0; i < s; i++)
+	{
+		sumsq += pow(*(dim + i), 2);
+	}
+	return sumsq;
+}
+
+10-22
+#include <iostream>
+#define SIZE 20
+using namespace std;
+
+void frqtest(int *x);
+
+int main()
+{
+	int a[SIZE], i;
+	int *p = a;
+
+	for (i = 0; i < SIZE; i++)
+	{
+		cout << "0~9까지의 수를 입력하시오. :";
+		cin >> *(p + i);
+
+		if (*(p + i) >= 10)
+			break;
+	}
+	frqtest(p);
+}
+
+void frqtest(int *x)
+{
+	int max, i, j;
+	int freq[SIZE] = { 0, };
+
+	for (i = 0; i < SIZE; i++)
+	{
+		freq[*(x + i)]++;
+	}
+
+	max = freq[0];
+
+	for (i = 1; i < SIZE; i++)
+	{
+		if (max < freq[i])
+		{
+			max = freq[i];
+			j = i;
+		}
+	}
+	cout << "0 ~ 9 중 가장 많이 나온 수는 " << j << " 이고, " << max << " 번 나왔습니다." << endl;
+}
+
+10-23
+#include <iostream>
+using namespace std;
+
+void sumcolrow(int (*x)[5]);
+void print(int (*x)[5], int m, int n);
+
+int main()
+{
+	int a[5][5] = { 35,28,67,73,0,
+					25,32,12,69,0,
+					97,56,14,23,0,
+					45,97,48,15,0, };
+	int(*p)[5];
+	p = a;
+	int i, j;
+
+	cout << "다음 표의 세로와 가로합, 그리고 모든 합을 구합니다." << endl << endl;
+
+	cout << "--------------------------------------------------" << endl;
+
+	for (i = 0; i < 4; i++)
+	{
+		for (j = 0; j < 4; j++)
+		{
+			cout << "|  " << *(*(p + i) + j) << "  |";
+		}
+		cout << endl;
+	}
+	cout << "--------------------------------------------------" << endl << endl;
+
+	sumcolrow(p);
+
+	cout << "위 표의 세로와 가로합, 그리고 모든 합을 " << endl;
+	cout << "각각 행과 열의 마지막에 구합니다." << endl << endl;
+	cout << "--------------------------------------------------" << endl;
+
+	print(p, 5, 5);
+
+	cout << "--------------------------------------------------" << endl;
+}
+
+void sumcolrow(int (*x)[5])
+{
+	int i, j;
+
+	for (i = 0; i < 4; i++)
+	{
+		for (j = 0; j < 4; j++)
+		{
+			*(*(x + i) + 4) += *(*(x + i) + j);
+			*(*(x + 4) + i) += *(*(x + j) + i);
+		}
+		*(*(x + 4) + 4) += *(*(x + i) + 4);
+	}
+}
+
+void print(int (*x)[5], int m, int n)
+{
+	int i, j;
+
+	for (i = 0; i < m; i++)
+	{
+		for (j = 0; j < n; j++)
+		{
+			cout << "|  " << *(*(x + i) + j) << "  |";
+		}
+		cout << endl;
+	}
+}

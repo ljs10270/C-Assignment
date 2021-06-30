@@ -1,0 +1,960 @@
+실전문제
+11-1
+#include <iostream>
+#include <math.h>
+using namespace std;
+
+struct point
+{
+	double x;
+	double y;
+}a, b;
+
+int main()
+{
+	double dx, dy, distance;
+
+	cout << "두 점의 좌표를 입력하시오. :";
+	cin >> a.x >> a.y >> b.x >> b.y;
+	dx = a.x - b.x;
+	dy = a.y - b.y;
+	distance = sqrt(pow(dx, 2) + pow(dy, 2));
+
+	cout << "두 점사이의 거리 : " << distance;
+}
+
+11-2
+#include <iostream>
+using namespace std;
+
+struct student
+{
+	int id;
+	char name[10];
+	int sc[3];
+	int total;
+	double ave;
+}ST[5];
+
+int main()
+{
+	int i, j;
+
+	for (i = 0; i < 5; i++)
+	{
+		cin >> ST[i].id >> ST[i].name;
+		for (j = 0; j < 3; j++)
+			cin >> ST[i].sc[j];
+		
+		ST[i].total = ST[i].sc[0] + ST[i].sc[1] + ST[i].sc[2];
+		ST[i].ave = ST[i].total / 3.0;
+	}
+	cout << "번  호\t이  름\t국어\t영어\t수학\t합계\t평균" << endl;
+	for (i = 0; i < 5; i++)
+		cout << ST[i].id << "\t" << ST[i].name << "\t" << ST[i].sc[0] << "\t" << ST[i].sc[1] << "\t" << ST[i].sc[2] << "\t" << ST[i].total << "\t" << ST[i].ave << endl;
+}
+
+11-3
+#include <iostream>
+#include <iomanip>
+using namespace std;
+
+struct complex
+{
+	double real;
+	double imag;
+}x, y, m;
+
+int main()
+{
+	x = { 1.0, 2.0 };
+	y = { 2.0, -3.0 };
+
+	m.real = x.real * y.real - x.imag * y.imag;
+	m.imag = x.real * y.imag + x.imag * y.real;
+
+	cout << setiosflags(ios::fixed);
+	cout.precision(2);
+	cout << "복소수의 곱셈 결과 = " << m.real << " + " << m.imag << " i" << endl;
+}
+
+11-4
+#include <iostream>
+using namespace std;
+
+struct point
+{
+	double x;
+	double y;
+}g;
+
+struct tri
+{
+	point a, b, c;
+}p;
+
+int main()
+{
+	p = { {0.0, }, {10,15},{50,15} };
+
+	g.x = (p.a.x + p.b.x + p.c.x) / 3.0;
+	g.y = (p.a.y + p.b.y + p.c.y) / 3.0;
+
+	cout << "무게 중심 = (" << g.x << ", " << g.y << ")";
+}
+
+11-5
+#include <iostream>
+using namespace std;
+
+struct student
+{
+	char name[20];
+	char major[20];
+	long int id;
+	int age;
+	char sex;
+}s;
+
+int readstudent(student *sp);
+
+int main()
+{
+	if (readstudent(&s) == 1)
+	{
+		cout << "성명 :" << s.name << endl;
+		cout << "전공 :" << s.major << endl;
+		cout << "학번 :" << s.id << endl;
+		cout << "나이 :" << s.age << endl;
+		cout << "성별 :" << s.sex << endl;
+	}
+}
+
+int readstudent(student *sp)
+{
+	cout << "성명 입력 : ";
+	cin >> sp->name;
+	cout << "전공 입력 : ";
+	cin >> sp->major;
+	cout << "학번 입력 : ";
+	cin >> sp->id;
+
+	if (sp->id >= 980000 && sp->id < 981000)
+	{
+		cout << "오류 ! 학번 입력 범위는 980000~980999 입니다" << endl;
+		return 0;
+	}
+
+	cout << "나이 입력 : ";
+	cin >> sp->age;
+	cout << "성별 입력 : ";
+	cin >> sp->sex;
+
+	if (sp->sex != 'M' && sp->sex != 'F')
+	{
+		cout << "오류 ! 성별 입력은 M 이나 F 입니다" << endl;
+		return 0;
+	}
+	cout << endl;
+	return 1;
+}
+
+11-6
+#include <iostream>
+#include <cstring>
+#define MAXperson 3
+using namespace std;
+
+struct telenumber
+{
+	char name[10];
+	long num;
+}xx[MAXperson];
+
+int main()
+{
+	int i = 0;
+
+	strcpy(xx[0].name, "정훈조");
+	strcpy(xx[1].name, "정재원");
+	strcpy(xx[2].name, "정승원");
+
+	xx[0].num = 16251351;
+	xx[1].num = 45678945;
+	xx[2].num = 12345678;
+
+	cout << "이 름\t전화번호" << endl;
+	for (i = 0; i < MAXperson; i++)
+		cout << xx[i].name << "\t" << xx[i].num << endl;
+}
+
+11-7
+#include <iostream>
+#include <iomanip>
+using namespace std;
+
+struct CMPLX
+{
+	double re;
+	double im;
+}za, zb, z;
+
+CMPLX add(CMPLX za, CMPLX zb)
+{
+	z.re = za.re - zb.re;
+	z.im = za.im - zb.im;
+	return z;
+}
+
+CMPLX mult(CMPLX za, CMPLX zb)
+{
+	z.re = za.re * zb.re - za.im * zb.im;
+	z.im = za.re * zb.im + za.im * zb.re;
+	return z;
+}
+
+void print(CMPLX z)
+{
+	cout << z.re << " + " << z.im << " i" << endl;
+}
+
+int main()
+{
+	za = { 3.0, 4.0 };
+	zb = { 5.0, 6.0 };
+
+	cout << setiosflags(ios::fixed);
+	cout.precision(3);
+
+	z = add(za, zb);
+	print(z);
+	z = mult(za, zb);
+	print(z);
+}
+
+11-8
+#include <iostream>
+#include <math.h>
+#include <iomanip>
+using namespace std;
+
+struct point
+{
+	double x;
+	double y;
+}p, q, m;
+
+double distance(point a, point b);
+point midpoint(point a, point b);
+
+int main()
+{
+	cin >> p.x >> p.y;
+	cin >> q.x >> q.y;
+	cout << "거리 = " << distance(p, q) << endl;
+	m = midpoint(p, q);
+
+	cout << setiosflags(ios::fixed);
+	cout.precision(6);
+
+	cout << "두 점사이의 중점 = (" << m.x << ", " << m.y << ")" << endl;
+}
+
+double distance(point a, point b)
+{
+	double dx, dy, distance;
+
+	dx = a.x - b.x;
+	dy = a.y - b.y;
+	distance = sqrt(pow(dx, 2) - pow(dy, 2));
+	return distance;
+}
+
+point midpoint(point a, point b)
+{
+	point mid;
+
+	mid.x = (a.x + b.x) / 2.0;
+	mid.y = (a.y - b.y) / 2.0;
+	return mid;
+}
+
+11-9
+#include <iostream>
+#define N 10
+using namespace std;
+
+struct studscore
+{
+	int id;
+	char name[N];
+	int score;
+}s[N], temp;
+
+int main()
+{
+	int i, j;
+
+	for (i = 0; i < N; i++)
+		cin >> s[i].id >> s[i].name >> s[i].score;
+
+	for(i = 0; i < N-1; i++)
+		for (j = i + 1; j < N; j++)
+		{
+			if (s[i].score < s[j].score)
+			{
+				temp = s[j];
+				s[j] = s[i];
+				s[i] = temp;
+			}
+		}
+
+	for (i = 0; i < N; i++)
+	{
+		cout << "\t" << s[i].id << " " << s[i].name << " " << s[i].score << endl;
+	}
+}
+
+11-10
+#include <iostream>
+using namespace std;
+
+struct studscore
+{
+	int id;
+	char name[10];
+	int score;
+};
+
+int main()
+{
+	studscore s[] =
+	{
+		2003001, "홍길동", 78,
+		2004002, "강감찬", 87,
+		2002003, "이순신", 100,
+		2001004, "이성계", 97
+	};
+
+	int i, year;
+
+	cout << "입학년도를 입력하시오. :";
+	cin >> year;
+
+	for (i = 0; i < sizeof(s) / sizeof(studscore); i++)
+	{
+		if (s[i].id / 1000 == year)
+			cout << s[i].id << " " << s[i].name << " " << s[i].score;
+	}
+}
+
+11-11
+#include <iostream>
+using namespace std;
+
+enum itemcode
+{
+	keyboard = 100, mouse, scanner,
+	laser = 200, inkjet, plotter
+};
+
+int main()
+{
+	int code;
+
+	cout << "품목 코드를 입력하세요. :";
+	cin >> code;
+
+	switch (code)
+	{
+	case keyboard:
+		cout << "키보드입니다." << endl;
+		break;
+
+	case mouse:
+		cout << "마우스입니다." << endl;
+		break;
+
+	case scanner:
+		cout << "스캐너입니다." << endl;
+		break;
+
+	case laser:
+		cout << "레이저 프린터입니다." << endl;
+		break;
+
+	case inkjet:
+		cout << "잉크젯 프린터입니다." << endl;
+		break;
+
+	case plotter:
+		cout << "플로터입니다." << endl;
+		break;
+
+	default:
+		cout << "항목이 존재치 않습니다" << endl;
+	}
+}
+
+연습문제
+11-12
+#include <iostream>
+#include <math.h>
+using namespace std;
+
+struct point
+{
+	double x;
+	double y;
+}a, b;
+
+int main()
+{
+	double dx, dy, distance;
+
+	cout << "점의 좌표를 입력하시오(x y) :";
+	cin >> a.x >> a.y;
+	cout << "점의 좌표를 입력하시오(x y) :"; 
+	cin >> b.x >> b.y;
+	dx = a.x - b.x;
+	dy = a.y - b.y;
+	distance = sqrt(pow(dx, 2) + pow(dy, 2));
+
+	cout << "두 점사이의 거리는 " << distance << "입니다." << endl;
+}
+
+11-13
+#include <iostream>
+#include <iomanip>
+using namespace std;
+
+struct vector
+{
+	double x;
+	double y;
+}a, b, c;
+
+vector get_vector_sum(vector a, vector b);
+
+int main()
+{
+
+	a = { 3, 4 };
+	b = { 4, 5 };
+
+	c = get_vector_sum(a, b);
+
+	cout << setiosflags(ios::fixed);
+	cout.precision(6);
+
+	cout << "벡터의 합은 (" << c.x << ", " << c.y << ") 입니다." << endl;
+
+}
+
+vector get_vector_sum(vector a, vector b)
+{
+	c.x = a.x + b.x;
+	c.y = a.y + b.y;
+
+	return c;
+}
+
+11-14
+#include <iostream>
+using namespace std;
+
+typedef struct
+{
+	double x;
+	double y;
+}POINT;
+POINT a, b, c;
+
+POINT translate(POINT a, POINT b);
+
+int main()
+{
+	a = { 10, 10 };
+	b = { 2, 3 };
+
+	c = translate(a, b);
+
+	cout << "새로운 점의 좌표는 (" << c.x << ", " << c.y << ")입니다." << endl;
+}
+
+POINT translate(POINT a, POINT b)
+{
+	c.x = a.x + b.x;
+	c.y = a.y + b.y;
+
+	return c;
+}
+
+11-15
+#include <iostream>
+#include <math.h>
+using namespace std;
+
+typedef struct
+{
+	double x;
+	double y;
+}POINT;
+POINT p1, p2, s;
+
+int main()
+{
+	double sum;
+
+	cout << "p1 : ";
+	cin >> p1.x >> p1.y;
+	cout << "p2 : ";
+	cin >> p2.x >> p2.y;
+
+	s.x = abs(p2.x - p1.x);
+	s.y = abs(p2.y - p1.y);
+
+	sum = s.x * s.y;
+
+	cout << "넓이 : " << sum << endl;
+}
+
+11-16
+#include <iostream>
+using namespace std;
+
+struct student
+{
+	int grade[3];
+	int total;
+	double ave;
+	char c;
+}stu[5];
+
+int Total(student stu[], int I);
+double ave(student stu[], int I);
+char hakjum(student stu[], int I);
+
+int main()
+{
+	int i, j;
+
+	cout << "학생의 성적을 입력하세요." << endl;
+	for (i = 0; i < 5; i++)
+	{
+		cout << i + 1 << "번째 국어 영어 수학 :";
+		for (j = 0; j < 3; j++)
+		{
+			cin >> stu[i].grade[j];
+		}
+		stu[i].total = Total(stu, i);
+		stu[i].ave = ave(stu, i);
+		stu[i].c = hakjum(stu, i);
+	}
+	
+	cout << endl;
+	cout << "번호\t국어\t영어\t수학\t총점\t평균\t학점" << endl;
+	for (i = 0; i < 5; i++)
+	{
+		cout << i << "\t" << stu[i].grade[0] << "\t" << stu[i].grade[1] << "\t" << stu[i].grade[2] << "\t" << stu[i].total << "\t" << stu[i].ave << "\t" << stu[i].c << endl;
+	}
+}
+
+int Total(student stu[], int I)
+{
+	int sum = 0;
+
+	for (int i = 0; i < 3; i++)
+	{
+		sum += stu[I].grade[i];
+	}
+	return sum;
+}
+
+double ave(student stu[], int I)
+{
+	double sum;
+
+	sum = stu[I].total / 3.0;
+
+	return sum;
+}
+
+char hakjum(student stu[], int I)
+{
+	if (stu[I].ave >= 90)
+		return 'A';
+	else if (stu[I].ave < 90 && stu[I].ave >= 80)
+		return 'B';
+	else if (stu[I].ave < 80 && stu[I].ave >= 70)
+		return 'C';
+	else if (stu[I].ave < 70 && stu[I].ave >= 60)
+		return 'D';
+	else
+		return 'F';
+}
+
+11-17
+#include <iostream>
+using namespace std;
+
+struct student
+{
+	char name[10];
+	char id[10];
+	int n;
+}s[5];
+
+int main()
+{
+	int i, sum = 0;
+	double ave;
+
+	cout << ">> 직원의 정보 <이름, ID, 급여>를 입력하세요. <<" << endl;
+
+	for (i = 0; i < 5; i++)
+	{
+		cout << i + 1 << "번 : ";
+		cin >> s[i].name >> s[i].id >> s[i].n;
+		sum += s[i].n;
+	}
+
+	ave = sum / 5;
+
+	cout << endl;
+	cout << "-------------------------------------------------" << endl;
+	cout << " 급여가 " << ave << "만원(평균) 이상인 직원 정보" << endl;
+	cout << "-------------------------------------------------" << endl;
+	for (i = 0; i < 5; i++)
+	{
+		if (s[i].n >= ave)
+		{
+			cout << "\t" << s[i].id << "\t" << s[i].n << "만원" << endl;
+		}
+	}
+}
+
+11-18
+#include <iostream>
+#define SIZE 100
+using namespace std;
+
+struct person
+{
+	char name[10];
+	char sex[5];
+	int n;
+}user[SIZE];
+
+void input(person ptr[]);
+void print(person *ptr);
+
+int main()
+{
+	cout << "최대 100명의 사용자 정보를 입력받고 출력합니다." << endl;
+
+	input(user);
+
+	cout << " 이름\t성별\t나이" << endl;
+	cout << "====================" << endl;
+	print(user);
+	cout << "=================== " << endl;
+}
+
+void input(person ptr[])
+{
+	int i, a;
+
+	for (i = 0; i < SIZE; i++)
+	{
+		cout << i + 1 << ". 이름은? ";
+		cin >> ptr[i].name;
+		cout << "   성별은(남 또는 여)? :";
+		cin >> ptr[i].sex;
+		cout << "   나이는? :";
+		cin >> ptr[i].n;
+		cout << "   계속 입력하시려면 1, 그만하려면 0을 입력하세요. :";
+		cin >> a;
+
+		if (a == 0)
+			break;
+		else
+			continue;
+	}
+}
+
+void print(person *ptr)
+{
+	for (int i = 0; i < SIZE; i++)
+	{
+		if ((ptr + i)->n == 0)
+			break;
+
+		cout << (ptr + i)->name << "\t" << (ptr + i)->sex << "\t" << (ptr + i)->n << endl;
+	}
+}
+
+11-19
+#include <iostream>
+#define SIZE 3
+using namespace std;
+
+struct person
+{
+	int number;
+	char name[10];
+	int child;
+	int pay;
+	int t_pay;
+}user[SIZE], temp;
+person *p = &temp;
+
+void input(person ptr[]);
+void print(person *ptr);
+
+int main()
+{
+	input(user);
+
+	cout << "사원번호\t이름\t기본급\t자녀수\t자녀수당\t급여" << endl;
+	cout << "----------------------------------------------------------" << endl;
+	print(user);
+}
+
+void input(person ptr[])
+{
+	int i;
+
+	for (i = 0; i < SIZE; i++)
+	{
+		cout << ">> 사원번호? : ";
+		cin >> ptr[i].number;
+		cout << ">> 이름? :";
+		cin >> ptr[i].name;
+		cout << ">> 자식수? :";
+		cin >> ptr[i].child;
+		cout << ">> 기본급? :";
+		cin >> ptr[i].pay;
+	}
+}
+
+void print(person *ptr)
+{
+	int i;
+	int suu,total_pay;
+
+	for (i = 0; i < SIZE; i++)
+	{
+		suu = (ptr + i)->child * 100000;
+		total_pay = suu + (ptr + i)->pay;
+		(ptr + i)->t_pay = total_pay;
+
+		cout << (ptr + i)->number << "\t" << (ptr + i)->name << "\t" << (ptr + i)->pay << "원\t" << (ptr + i)->child << "명\t" << suu << "원\t" << (ptr + i)->t_pay << "원" << endl;
+	}
+
+	p->t_pay = 0;
+
+	for (i = 0; i < SIZE; i++)
+	{
+		if (p->t_pay < (ptr + i)->t_pay)
+		{
+			p = ptr;
+		}
+	}
+	cout << "최고 급여자: " << p->name << "  " << p->t_pay;
+}
+
+11-20
+#include <iostream>
+#include <cstring>
+using namespace std;
+
+struct person
+{
+	char language[3] = "A0";
+	char math[3] = "B+";
+	char physical[3] = "A0";
+	char conversation[3] = "B0";
+	char Clanguage[3] = "A+";
+}user;
+
+double score(char c[]);
+
+int main()
+{
+	double ave;
+	char c;
+
+	cout << "---------------------------------------" << endl;
+	cout << "강좌명\t학점\t등급\t" << endl;
+	cout << "---------------------------------------" << endl;
+	cout << "글쓰기\t"<< 2 << "\t" << user.language << endl;
+	cout << "수학\t" << 3 << "\t" << user.math << endl;
+	cout << "체육\t" << 2 << "\t" << user.physical << endl;
+	cout << "회화\t" << 2 << "\t" << user.conversation << endl;
+	cout << "c언어\t" << 2 << "\t" << user.Clanguage << endl;
+	cout << "---------------------------------------" << endl;
+	
+	ave = (score(user.Clanguage) + score(user.conversation) + score(user.language) + score(user.math) + score(user.physical)) / 5;
+	cout << "\t  평점  " << ave << endl;
+}
+
+double score(char c[])
+{
+	if (strcmp(c, "A+") == 0)
+		return 4.5;
+	else if (strcmp(c, "A0") == 0)
+		return 4.0;
+	else if (strcmp(c, "B+") == 0)
+		return 3.5;
+	else if (strcmp(c, "B0") == 0)
+		return 3.0;
+	else if (strcmp(c, "C+") == 0)
+		return 2.5;
+	else if (strcmp(c, "C0") == 0)
+		return 2.0;
+	else if (strcmp(c, "D+") == 0)
+		return 1.5;
+	else if (strcmp(c, "D0") == 0)
+		return 1.0;
+	else
+		return 0;
+}
+
+11-21
+#include <iostream>
+#include <cstring>
+using namespace std;
+
+struct person
+{
+	char name[10];
+	char h_tel[20];
+	char tel[20];
+}user[3];
+
+int main()
+{
+	int i;
+	char c[10];
+
+	for (i = 0; i < 3; i++)
+	{
+		cout << "이름을 입력하시오. :";
+		cin >> user[i].name;
+		cout << "집전화번호를 입력하시오. :";
+		cin >> user[i].h_tel;
+		cout << "휴대폰번호를 입력하시오. :";
+		cin >> user[i].tel;
+	}
+
+	cout << endl;
+	cout << "검색할 이름을 입력하시오. :";
+	cin >> c;
+
+	for (i = 0; i < 3; i++)
+	{
+		if (strcmp(c, user[i].name) == 0)
+		{
+			cout << "집전화번호: " << user[i].h_tel << endl;
+			cout << "휴대폰번호: " << user[i].tel << endl;
+		}
+	}
+}
+
+11-22
+#include <iostream>
+#include <cstring>
+using namespace std;
+
+struct person
+{
+	char name[10];
+	char tel[20];
+	int sum;
+}user[5];
+
+int main()
+{
+	int i,  j = 0;
+	int n, s;
+	char c[10];
+
+	cout << "1.계좌생성\t2.입금\t3.출금\t4.잔액조회\t5.종료" << endl;
+	while (true)
+	{
+		cout << endl;
+		cout << "기능을 선택하시오 : ";
+		cin >> n;
+
+		switch (n)
+		{
+		case 1:
+			while (j < 5)
+			{
+				cout << endl;
+				cout << "이름 : ";
+				cin >> user[j].name;
+				cout << "전화번호 : ";
+				cin >> user[j].tel;
+				j++;
+				break;
+			}
+			continue;
+
+		case 2:
+			cout << endl;
+			cout << "등록된 계좌의 이름을 입력하시오.";
+			cin >> c;
+
+			for (i = 0; i < 5; i++)
+			{
+				if (strcmp(c, user[i].name) == 0)
+				{
+					cout << "입금할 금액을 입력하세요 : ";
+					cin >> s;
+					user[i].sum += s;
+				}
+			}
+			continue;
+
+		case 3:
+			cout << endl;
+			cout << "등록된 계좌의 이름을 입력하시오.";
+			cin >> c;
+
+			for (i = 0; i < 5; i++)
+			{
+				if (strcmp(c, user[i].name) == 0)
+				{
+					cout << "출금할 금액을 입력하세요 : ";
+					cin >> s;
+					user[i].sum -= s;
+				}
+			}
+			continue;
+
+		case 4:
+			cout << endl;
+			cout << "등록된 계좌의 이름을 입력하시오.";
+			cin >> c;
+
+			for (i = 0; i < 5; i++)
+			{
+				if (strcmp(c, user[i].name) == 0)
+				{
+					cout << "--------------------------------" << endl;
+					cout << "번호 : " << i + 1 << endl;
+					cout << "이름 : " << user[i].name << endl;
+					cout << "번호 : " << user[i].tel << endl;
+					cout << "잔액 : " << user[i].sum << endl;
+				}
+			}
+			continue;
+
+		case 5:
+			break;
+		}
+		break;
+	}
+}

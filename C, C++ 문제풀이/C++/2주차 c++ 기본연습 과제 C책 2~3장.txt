@@ -1,0 +1,661 @@
+- 2장 연습문제 -
+
+2-1
+#include <iostream>
+using namespace std;
+
+int main()
+{
+	cout << "*************" << endl;
+	cout << "대 한 민 국" << endl;
+	cout << "*************" << endl;
+}
+
+2-2
+#include <iostream>
+using namespace std;
+
+int main()
+{
+	int a, b, sum;
+
+	cout << "일일 야근비를 입력하세요. :";
+	cin >> a;
+	cout << "야근한 날짜 수를 입력하세요. :";
+	cin >> b;
+
+	sum = a * b;
+
+	cout << "한달 야근비는 " << sum << "원입니다" << endl;
+}
+
+2-3
+#include <iostream>
+using namespace std;
+
+int main()
+{
+	int a, b, sum;
+
+	cout << "근무 시간을 입력하세요. :";
+	cin >> a;
+	cout << "시간당 급여를 입력하세요. :";
+	cin >> b;
+
+	sum = a * b;
+
+	cout << "총급여는 " << sum << "원입니다" << endl;
+}
+
+2-4
+#include <iostream>
+#define F 3.14
+using namespace std;
+
+int main()
+{
+	int r, l;
+	double d, n;
+
+	cout << "반지름을 입력하세요. :";
+	cin >> r;
+	
+	l = 2 * r;
+	d = 2 * F * r;
+	n = F * r * r;
+
+	cout << "원의 지름은 " << l << "입니다" << endl;
+	cout << "원의 둘레는 " << d << "입니다" << endl;
+	cout << "원의 면적은 " << n << "입니다" << endl;
+}
+
+2-5
+#include <iostream>
+using namespace std;
+
+int main()
+{
+	cout << "* * * * *" << endl;
+	cout << " * * * *" << endl;
+	cout << "  * * *" << endl;
+	cout << "   * *" << endl;
+	cout << "    *" << endl;
+}
+
+2-6
+#include <iostream>
+using namespace std;
+
+int main()
+{
+	int n, sum;
+
+	cout << "당신의 나이를 입력하세요. :";
+	cin >> n;
+
+	sum = n * 365;
+
+	cout << "당신이 살아온 날은 " << sum << " 일입니다." << endl;
+}
+
+2-7
+#include <iostream>
+using namespace std;
+
+int main()
+{
+	int r;
+	double sum;
+
+	cout << "원의 반지름을 입력하시오. :";
+	cin >> r;
+
+	sum = 3 * (r * r * r) / 4;
+
+	cout << "원의 부피는 " << sum << " 입니다." << endl;
+}
+
+2-8
+#include <iostream>
+using namespace std;
+
+int main()
+{
+	int a, b, c, sum;
+	double avg;
+
+	cout << "a값을 입력하시오. :";
+	cin >> a;
+	cout << "b값을 입력하시오. :";
+	cin >> b;
+	cout << "c값을 입력하시오. :";
+	cin >> c;
+
+	sum = a + b + c;
+	avg = sum / 3;
+
+	cout << "모든 값의 합은" << sum << " 입니다" << endl;
+	cout << "모든 값의 평균은 " << avg << " 입니다" << endl;
+}
+
+2-9
+#include <iostream>
+using namespace std;
+
+int main()
+{
+	int a;
+
+	cout << "정수값을 입력하시오. :";
+	cin >> a;
+	cout << "입력받은 정수의 값은" << a << "입니다" << endl;
+	cout << "입력받은 정수의 값의 제곱값은 " << a*a << "입니다" << endl;
+	cout << "입력받은 정수의 값의 세제곱값은 " << a*a*a << "입니다" << endl;
+}
+
+2-10
+#include <iostream>
+#include <iomanip>
+using namespace std;
+
+int main()
+{
+	int a;
+	double b;
+
+	cout << "화씨온도를 입력하세요. :";
+	cin >> a;
+
+	b = (a - 32) / 1.8;
+
+	cout << setiosflags(ios::fixed);
+	cout.precision(2);
+
+	cout << "섭씨 온도는 " << b << "도 입니다" << endl;
+}
+
+- 3장 실전문제 -
+
+3-1
+#include <iostream>
+using namespace std;
+
+int main()
+{
+	int inch = 10;
+	double c;
+
+	c = inch * 2.54;
+
+	cout << "10인치는 " << c << "cm이다" << endl;
+}
+
+3-2
+#include <iostream>
+#include <iomanip>
+using namespace std;
+
+int main()
+{
+	char name[10];
+	int year;
+	double GPA, score;
+
+	cout << "이름은? ";
+	cin >> name;
+	cout << "몇 학년? ";
+	cin >> year;
+	cout << year << "학년 평점은? ";
+	cin >> GPA;
+
+	score = (GPA * 100) / 4.5;
+
+	cout << setiosflags(ios::fixed);
+	cout.precision(1);
+
+	cout << endl << "--------------------------" << endl;
+	cout << "이름	학년	평점(점수)";
+	cout << endl << "--------------------------" << endl;
+	cout << name << "\t" << year << "\t" << GPA << "(" << score << ")";
+	cout << endl << "--------------------------" << endl;
+}
+
+3-3
+#include <iostream>
+using namespace std;
+
+int main()
+{
+	int s = 1, w = 2, te;
+
+	cout << "s의 초기값 = " << s << endl;
+	cout << "w의 초기값 = " << w << endl;
+	cout << "=======================" << endl;
+
+	te = s;
+	s = w;
+	w = te;
+
+	cout << "s의 변환값 = " << s << endl;
+	cout << "w의 변환값 = " << w << endl;
+}
+
+3-4
+#include <iostream>
+#include <iomanip>
+using namespace std;
+
+int main()
+{
+	int mile = 26, yards = 385;
+	double km;
+
+	km = 1.609 * (mile + yards / 1760.0);
+
+	setiosflags(ios::fixed);
+	cout.precision(8);
+	cout << "마라톤 경기 거리로 환산 = " << km << endl;
+}
+
+3-5
+#include <iostream>
+using namespace std;
+
+int main()
+{
+	int m = 8, n = 5, z;
+
+	cout << "m의 초기값 " << m << "\t" << "n의 초기값 " << n << endl;
+	n += 3;
+	m -= 1;
+	z = m + n;
+
+	cout << "z의 값은 " << z << endl;
+}
+
+3-6
+#include <iostream>
+using namespace std;
+
+int main()
+{
+	char c, d;
+
+	cout << "두 번째 문자를 입력하세요. :";
+	cin >> c >> d;
+
+	cout << d << "\t" << c << endl;
+}
+
+3-7
+#include <iostream>
+#define GAL 3.785
+using namespace std;
+
+int main()
+{
+	double a, b;
+
+	cout << "갤런의 값을 입력하세요. :";
+	cin >> a;
+
+	b = a * GAL;
+
+	cout << a << "갤런은 " << b << "리터 입니다." << endl;
+}
+
+3-8
+#include <iostream>
+using namespace std;
+
+int main()
+{
+	int a, b;
+
+	cout << "다항식 3x^2 + 7x + 11에 이용할 x의 값을 입력하시오. :";
+	cin >> a;
+
+	b = 3 * a * a + 7 * a + 11;
+
+	cout << "다항식을 계산한 값은 " << b << "입니다" << endl;
+}
+
+3-9
+#include <iostream>
+using namespace std;
+
+int main()
+{
+	char a;
+
+	cout << "하나의 소문자를 입력하세요. :";
+	cin >> a;
+
+	if (a >= 'a'&&a <= 'z')
+		cout << (char)(a + 'A' - 'a');
+	else
+		cout << a;
+}
+
+3-10
+#include <iostream>
+using namespace std;
+
+int main()
+{
+	char a, b;
+
+	cout << "대문자를 입력하시오. :";
+	cin >> a >> b;
+
+	cout << a << "의 소문자는 " << (char)(a - 'A' + 'a') << endl;
+	cout << b << "의 소문자는 " << (char)(b - 'A' + 'a') << endl;
+}
+
+- 3장 연습문제 - 
+
+3-11
+#include <iostream>
+#define K 1.609
+using namespace std;
+
+int main()
+{
+	int mail = 7600;
+	double km = mail * K;
+
+	cout << mail << " mail은 " << km << " km이다." << endl;
+}
+
+3-12
+#include <iostream>
+#include <iomanip>
+using namespace std;
+
+int main()
+{
+	double s, d, t;
+
+	cout << "자동차의 평균 주행속도를 입력하시오. :";
+	cin >> s;
+	cout << "주행한 거리를 입력하시오. :";
+	cin >> d;
+
+	t = d / s;
+
+	cout << setiosflags(ios::fixed);
+	cout.precision(2);
+
+	cout << d << "거리를 " << s << " 평균 주행속도로 가면 " << t << " 시간이 걸린다." << endl;
+}
+
+3-13
+#include <iostream>
+#include <iomanip>
+using namespace std;
+
+int main()
+{
+	double a, b, sum;
+
+	cout << "a와 b의 수를 입력하세요. :";
+	cin >> a >> b;
+
+	sum = (a - b * 5) / (b - a * 5);
+
+	cout << setiosflags(ios::fixed);
+	cout.precision(2);
+
+	cout << "결과는 " << sum << " 이다." << endl;
+}
+
+3-14
+#include <iostream>
+#include <iomanip>
+#define FOUND 454
+using namespace std;
+
+int main()
+{
+	double p, sum;
+
+	cout << "파운드 값을 입력하시오. :";
+	cin >> p;
+
+	sum = p * FOUND;
+
+	cout << setiosflags(ios::fixed);
+	cout.precision(2);
+
+	cout << p << " 파운드값은 " << sum << " 그램입니다." << endl;
+}
+
+3-15
+#include <iostream>
+#include <iomanip>
+#define F 3.3058
+using namespace std;
+
+int main()
+{
+	double p, sum;
+
+	cout << "평수를 입력하시오. :";
+	cin >> p;
+
+	sum = p * F;
+
+	cout << setiosflags(ios::fixed);
+	cout.precision(2);
+
+	cout << p << "평을 제곱미터로 환산하면 ";
+
+	cout.precision(4);
+	cout << sum << " 제곱미터가 됩니다." << endl;
+}
+
+3-16
+#include <iostream>
+using namespace std;
+
+int main()
+{
+	int a = 60;
+
+	cout << "1년은 총 " << a * 60 * 24 * 365 << "초 입니다." << endl;
+}
+
+3-17
+#include <iostream>
+#include <iomanip>
+#define FOUND 0.453592
+using namespace std;
+
+int main()
+{
+	double kg, sum;
+
+	cout << "kg값을 입력하세요. :";
+	cin >> kg;
+
+	sum = kg * 1 / FOUND;
+
+	cout << setiosflags(ios::fixed);
+	cout.precision(3);
+	cout << "kg값을 파운드값으로 계산한 값은 " << sum << " 입니다" << endl;
+}
+
+3-18
+#include <iostream>
+#define G 3000
+using namespace std;
+
+int main()
+{
+	int time, sum;
+
+	cout << "휴대폰 통화시간 입력하세요. :";
+	cin >> time;
+
+	sum = time * 500 + G;
+
+	cout << time << "시간동안 사용한 통화요금은 " << sum << "원 입니다." << endl;
+}
+
+3-19
+#include <iostream>
+using namespace std;
+
+int main()
+{
+	double x, y, z, sum;
+
+	cout << "x값을 입력하세오. :";
+	cin >> x;
+	cout << "y값을 입력하세오. :";
+	cin >> y;
+	cout << "z값을 입력하세오. :";
+	cin >> z;
+
+	sum = x * y + z;
+
+	cout << "xy+z를 계산한 값은 " << sum << "입니다." << endl;
+}
+
+3-20
+#include <iostream>
+using namespace std;
+
+int main()
+{
+	double x, sum;
+
+	cout << "x값을 입력하세오. :";
+	cin >> x;
+
+	sum = 3 * x*x - 7 * x + 9;
+
+	cout << "다항식을 계산한 값은 " << sum << "입니다." << endl;
+}
+
+3-21
+#include <iostream>
+#include <stdio.h>
+using namespace std;
+
+int main()
+{
+	double d, s, t;
+	d = 15e7;
+	s = 30e4;
+	t = d / s;
+
+	cout << "초속 30만 km의 빛이 태양에서 출발하여 지구에 도착하는 시간은 ";
+	printf("%.e", t);
+	cout << "초 입니다" << endl;
+}
+
+3-22
+#include <iostream>
+#define K 164.2
+#define G 1390
+using namespace std;
+
+int main()
+{
+	double kw, sum;
+	
+	cout << "사용한 kw양을 입력하시오. ";
+	cin >> kw;
+
+	sum = kw * K + G;
+
+	cout << "전기요금은 " << sum << "원 입니다." << endl;
+}
+
+3-23
+#include <iostream>
+#include <iomanip>
+using namespace std;
+
+int main()
+{
+	double win, fall, sum;
+	
+	cout << "승수를 입력하시오. :";
+	cin >> win;
+
+	cout << "패전수를 입력하시오. :";
+	cin >> fall;
+
+	sum = win / (win + fall);
+
+	cout << setiosflags(ios::fixed);
+	cout.precision(3);
+
+	cout << "승률은 " << sum << "입니다." << endl;
+}
+
+3-24
+#include <iostream>
+using namespace std;
+
+int main()
+{
+	double ac, ae, bc, de;
+
+	cout << "삼각형의 선 AC를 입력하시오. :";
+	cin >> ac;
+	cout << "삼각형의 선 AE를 입력하시오. :";
+	cin >> ae;
+	cout << "삼각형의 선 BC를 입력하시오. :";
+	cin >> bc;
+	
+	de = (ae * bc) / ac;
+
+	cout << "삼각형의 선 DE는 " << de << "입니다" << endl;
+}
+
+3-25
+#include <iostream>
+using namespace std;
+
+int main()
+{
+	int pay, time, befor, tax_pay, total_pay;
+	double tax;
+
+	cout << "시간당 급여를 입력하시오. :";
+	cin >> pay;
+	cout << "근무 시간을 입력하시오. :";
+	cin >> time;
+	cout << "세금비율을 입력하시오. :";
+	cin >> tax;
+
+	befor = pay * time;
+	tax_pay = befor * tax;
+	total_pay = befor - tax_pay;
+
+	cout << "세전급여 " << befor << "에서 세금값을 제한 최종 급여는 " << total_pay << "입니다." << endl;
+}
+
+3-26
+#include <iostream>
+#include <iomanip>
+using namespace std;
+
+int main()
+{
+	double p, s, sum;
+
+	cout << "크기를 입력하시오. :";
+	cin >> p;
+	cout << "넓이를 입력하시오. :";
+	cin >> s;
+
+	sum = p / s;
+
+	cout << setiosflags(ios::fixed);
+
+	cout << "압력의 세기는 " << sum << "입니다." << endl;
+}

@@ -1,0 +1,177 @@
+*문자열은 string 사용한다!
+#include <string> 필수
+문자열을 반환할 때도 반환 함수 자료형이 string이어야 한다.
+
+문제 1
+#include <iostream>
+using namespace std;
+
+class Tower
+{
+private:
+	int height;
+
+public:
+	Tower()
+	{
+		height = 1;
+	}
+	Tower(int a)
+	{
+		height = a;
+	}
+	int getHeight()
+	{
+		return height;
+	}
+};
+
+int main()
+{
+	Tower myTower;
+	Tower seoulTower(100);
+	cout << "높이는 " << myTower.getHeight() << "미터" << endl;
+	cout << "높이는 " << seoulTower.getHeight() << "미터" << endl;
+}
+
+문제2
+#include <iostream>
+#include <string>
+using namespace std;
+
+class Date
+{
+private:
+	string c;
+	int q, p, z;
+
+public:
+	Date(string a)
+	{
+		c = a;
+	}
+	Date(string a, string b, string c)
+	{
+		q = stoi(a);
+		p = stoi(b);
+		z = stoi(c);
+	}
+	void show()
+	{
+		cout << c << endl;
+	}
+	int getYear()
+	{
+		return q;
+	}
+	int getMonth()
+	{
+		return p;
+	}
+	int getDate()
+	{
+		return z;
+	}
+};
+
+int main()
+{
+	Date birth("2014", "3", "20");
+	Date indeoendenceDay("1945년8월15일");
+	indeoendenceDay.show();
+	cout << birth.getYear() << "," << birth.getMonth() << "," << birth.getDate() << endl;
+}
+
+문제 3
+#include <iostream>
+#include <string>
+using namespace std;
+
+class Account
+{
+private:
+	string name;
+	int id, balance;
+
+public:
+	Account(string a, int b, int n)
+	{
+		name = a;
+		id = b;
+		balance = n;
+	}
+	string getOwner()
+	{
+		return name;
+	}
+	void deposit(int n)
+	{
+		balance += n;
+	}
+	int withdraw(int n)
+	{
+		balance -= n;
+		return balance;
+	}
+	int inquiry()
+	{
+		return balance;
+	}
+};
+
+int main()
+{
+	Account a("kitae", 1, 5000);
+	a.deposit(50000);
+	cout << a.getOwner() << "의 잔액은 " << a.inquiry() << endl;
+
+	int money = a.withdraw(20000);
+	cout << a.getOwner() << "의 잔액은 " << a.inquiry() << endl;
+}
+
+문제 8
+#include <iostream>
+#include <string>
+using namespace std;
+
+class Integer
+{
+private:
+	string a;
+	int i;
+
+public:
+	Integer(string n)
+	{
+		a = n;
+	}
+	int get()
+	{
+		i = stoi(a);
+		return i;
+	}
+	void set(string n)
+	{
+		a = n;
+	}
+	int isEven()
+	{
+		i = stoi(a);
+		if (i > 0)
+			return 1;
+		else
+			return 0;
+	}
+};
+
+int main()
+{
+	Integer n("30");
+	cout << n.get() << "  ";
+	n.set("50");
+	cout << n.get() << "  ";
+
+	Integer m("300");
+	cout << m.get() << "  ";
+	cout << m.isEven() << endl;
+}

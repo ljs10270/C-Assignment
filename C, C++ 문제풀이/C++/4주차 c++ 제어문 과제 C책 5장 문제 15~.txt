@@ -1,0 +1,900 @@
+실전문제
+
+5-16
+#include <iostream>
+using namespace std;
+
+int main()
+{
+	int a = 100000;
+	int n = 10;
+	double r = 0.12;
+	double p;
+	int i;
+
+	p = a;
+
+	for (i = 1; i <= n; i++)
+	{
+		p = p * (1.0 + r);
+	}
+
+	cout << "100만원을 10년간 복리로 연 12퍼센트로 예금할 때 원리합계는 " << p << "원 이다" << endl;
+}
+
+5-17
+1.
+#include <iostream>
+using namespace std;
+
+int main()
+{
+	int i, k;
+	for(i = 1; i <=5; i++)
+	{
+		for(k = 1; k <= i; k++)
+		{
+			cout << "*";
+		}
+	cout << endl;
+	}
+}
+
+2.
+#include <iostream>
+using namespace std;
+
+int main()
+{
+	int line, sp, star;
+
+	for(line = 4; line >=0; line--)
+	{
+		for(sp = 0; sp < 4 - line; sp++)
+			cout << " ";
+			for(star = 0; star < (line * 2) + 1; star++)
+				cout << "*";
+			cout << endl;	
+	}	
+}
+
+3.
+#include <iostream>
+using namespace std;
+
+int main()
+{
+	int a,b;
+
+	for(a = 5; a >=0; a--)
+	{
+		for(b = 0; b <= a; b++)
+		{
+			cout << "*";
+		}
+	cout << endl;	
+	}	
+}
+
+4.
+#include <iostream>
+using namespace std;
+
+int main()
+{
+	int line, sp, star;
+
+	for(line = 0; line < 5; line++)
+	{
+		for(sp = 5-line; sp > 0; sp--)
+			cout << " ";
+			for(star = 1; star <= (line * 2) + 1; star++)
+				cout << "*";
+		
+		cout << endl;
+	}
+}
+
+5-18
+#include <iostream>
+using namespace std;
+
+int main()
+{
+	int i, n;
+	double sum = 0;
+
+	cout << "입의의 정수 n 을 입력하시오. : ";
+	cin >> n;
+
+	for (i = 2; i <= n; i++)
+		sum += ((double)(i - 1) / i);
+
+	for (i = 2; i <= n; i++)
+	{
+		cout << i - 1 << "/" << i;
+
+		if(i < n)
+			cout << " + ";
+	}
+	cout << " = " << sum;
+}
+
+
+5-19
+#include <iostream>
+using namespace std;
+
+int main()
+{
+	char kru;
+
+	cout << "a ~ z 사이의 문자 1개를 입력한 후 enter 키를 누르세요. " << endl;
+	cin >> kru;
+
+	for (; kru <= 'z'; kru++)
+		cout << kru;
+
+	cout << endl;
+}
+
+5-20
+#include <iostream>
+using namespace std;
+
+int main()
+{
+	int i, quiz, sum = 0, pass = 0, fail = 0;
+	double avg;
+
+	for (i = 1; i <= 10; i++)
+	{
+		cout << i << "번의 퀴즈 점수는? : ";
+		cin >> quiz;
+
+		sum += quiz;
+
+		if (quiz >= 70)
+			pass++;
+		else
+			fail++;
+
+		avg = (double)sum / 10;
+	}
+
+	cout << "====================" << endl;
+	cout << "평균 : " << avg << "점 " << endl;
+	cout << "통과자 : " << pass <<"명 "<< endl;
+	cout << "탈락자 : " << fail << "명 "<< endl;
+}
+
+5-21
+#include <iostream>
+using namespace std;
+
+int main()
+{
+	int i;
+	double area = 100, target = 1;
+
+	for (i = 1; ;i++)
+	{
+		area = area / 2;
+		cout << i << "번 접었을 때의 넓이 : " << area << endl;
+		if (area < target)
+			break;
+	}
+}
+
+5-22
+#include <iostream>
+using namespace std;
+
+int main()
+{
+	int die1, die2;
+	int cnt = 0;
+
+	cout << "=============================" << endl;
+	cout << "주사위1		주사위2" << endl;
+	cout << "=============================" << endl;
+
+	for (die1 = 1; die1 <= 6; die1++)
+	{
+		for (die2 = 1; die2 <= 6; die2++)
+		{
+			if (die1 + die2 == 8)
+			{
+				cout << die1 << "\t";
+				cout << "\t" << die2 << endl;
+				cnt++;
+			}
+		}
+	}
+
+	cout << "=============================" << endl;
+	cout << "\t" << "총 " << cnt << "가지";
+}
+
+5-23
+#include <iostream>
+using namespace std;
+
+int main()
+{
+	int i = 0, sum = 0;
+	
+	for(i = 0; sum < 1000; i++)
+	{
+		sum += i * i;
+	}
+	cout << "i = " << i << " sum = " << sum;
+}
+
+5-24
+#include <iostream>
+using namespace std;
+
+int main()
+{
+	int i, sum1 = 0, sum2 = 0, tot = 0;
+
+	while (1)
+	{
+		cout << "정수 입력 : ";
+		cin >> i;
+
+		if (i == 0)
+			break;
+
+		if (i < 0)
+			sum1 += i;
+		else
+			sum2 += i;
+	}
+
+	tot = sum1 + sum2;
+	cout << "전체 정수의 합 = " << tot << endl;
+	cout << "양의 정수의 합 = " << sum2 << endl;
+	cout << "음의 정수의 합 = " << sum1 << endl;
+}
+
+5-25
+#include <iostream>
+using namespace std;
+
+int main()
+{
+	int score;
+	char hakjum;
+	
+	while(true)
+	{
+		cout << "점수를 입력하시오 : ";
+		cin >> score;
+		
+		if(score == 0)
+			break;
+		
+		switch(score / 10)
+		{
+		case 10:
+		case 9:
+			hakjum = 'A';
+			break;
+
+		case 8:
+			hakjum = 'B';
+			break;
+
+		case 7:
+			hakjum = 'C';
+			break;
+		
+		case 6:
+			hakjum = 'D';
+			break;
+
+		default:
+			hakjum = 'F';
+
+		}
+	cout << score << "\t" << hakjum << endl;
+	}
+}
+
+연습문제
+
+5-16
+#include <iostream>
+using namespace std;
+
+int main()
+{
+	int s, a;
+	char b;
+	double sum = 0;
+
+	cout << "******************************************************" << endl;
+	cout << "McDows11's Restaurant" << endl;
+	cout << "******************************************************" << endl;
+	cout << "Make your Selection from the menu below  :" << endl;
+	cout << "1.Regular Hamburger				$0.89" << endl;
+	cout << "2.Regular Cheeseburger				$0.99" << endl;
+	cout << "3.Fish Sandwich					$1.29" << endl;
+	cout << "4.Half-pounder with cheese			$2.49" << endl;
+	cout << "5.French fries					$0.79" << endl;
+	cout << "6.Large soft drink				$0.99" << endl;
+	cout << "******************************************************" << endl;
+
+
+	while (true)
+	{
+		cout << "Select 1, 2, 3, 4, 5 or 6 -->";
+		cin >> s;
+
+		cout << "주문할 수량을 입력하시오 -->";
+		cin >> a;
+
+		cout << "추가로 주문하시겠습니까?<Y/N>";
+		cin >> b;
+
+		switch (s)
+		{
+		case 1:
+		{
+			sum += 0.89 * a;
+			break;
+		}
+
+		case 2:
+		case 6:
+		{
+			sum += 0.99 * a;
+			break;
+		}
+
+		case 3:
+		{
+			sum += 1.29 * a;
+			break;
+		}
+
+		case 4:
+		{
+			sum += 2.49 * a;
+			break;
+		}
+
+		case 5:
+		{
+			sum += 0.79 * a;
+			break;
+		}
+		}
+		if (b == 'n' || b == 'N')
+			break;
+	}
+
+
+	cout << "Please pay" << "[  $" << 	sum  << "  ]" << endl;
+	cout << "Thank you for eatting at McDowe11's."<< endl;
+}
+
+5-17
+#include <iostream>
+using namespace std;
+
+int main()
+{
+	int s, a, sum = 0;
+	char b;
+
+	while (true)
+	{
+		cout << "당신은 어떤 과일을 좋아하십니까" << endl;
+		cout << "1.사과	2.바나나	3.오렌지" << endl;
+		cout << "원하는 과일의 번호를 입력하시오 ->";
+		cin >> s;
+
+		cout << "당신이 구입할 과일의 개수를 입력하시오 ->";
+		cin >> a;
+
+		cout << "-추가- 계속 다른 과일의 구입을 원하시면 'y'를, 아니면'n'을 입력하시오. ->";
+		cin >> b;
+
+		switch (s)
+		{
+		case 1:
+		{
+			sum += 500 * a;
+			break;
+		}
+
+		case 2:
+		{
+			sum += 800 * a;
+			break;
+		}
+
+		case 3:
+		{
+			sum += 1000 * a;
+			break;
+		}
+		}
+		if (b == 'n' || b == 'N') 
+			break;
+	}
+
+	cout << "당신이 지불할 가격은 " << sum << "원 입니다" << endl;
+}
+
+5-18
+#include <iostream>
+using namespace std;
+
+int main()
+{
+	int s, a, sum = 0;
+	char b, c;
+
+	cout << "목적지" << endl;
+	cout << "1.서울<25000원>	2.부산<18000원>	3.광주<12000원> 4.대구<20000원>" << endl;
+
+	while (true)
+	{
+		cout << "목적지 번호를 입력하시오 ->";
+		cin >> s;
+
+		cout << "구매하고자 하는 표의 갯수를 입력하시오 ->";
+		cin >> a;
+
+		cout << "어른이면 'Y', 학생일 경우 'N'을 입력하시오. ->";
+		cin >> b;
+
+		if (b == 'y' || b == 'Y')
+			cout << "성인이므로 할인하지 않습니다" << endl;
+
+		cout << "더 구매하시겠습니까?<Y/N>";
+		cin >> c;
+
+		switch (s)
+		{
+		case 1:
+		{
+			if (b == 'n' || b == 'N')
+				sum += 25000 * 0.5 * a;
+
+			else
+				sum += 25000 * a;
+
+			break;
+		}
+
+		case 2:
+		{
+			if (b == 'n' || b == 'N')
+				sum += 18000 * 0.5 * a;
+
+			else
+				sum += 18000 * a;
+
+			break;
+		}
+
+		case 3:
+		{
+			if (b == 'n' || b == 'N')
+				sum += 12000 * 0.5 * a;
+
+			else
+				sum += 12000 * a;
+
+			break;
+		}
+
+		case 4:
+		{
+			if (b == 'n' || b == 'N')
+				sum += 20000 * 0.5 * a;
+
+			else
+				sum += 20000 * a;
+
+			break;
+		}
+		}
+		if (c == 'n' || c == 'N') 
+			break;
+	}
+
+	cout << "버스요금은 < " << sum << "원 > 입니다" << endl;
+}
+
+5-19
+#include <iostream>
+using namespace std;
+
+int main()
+{
+	double i, pi1 = 0, pi = 0, sum;
+
+	for (i = 1; i < 100000; i = i + 4)
+	{
+		pi += 4 / i;
+	}
+
+	for (i = 3; i < 100000; i = i + 4)
+	{
+		pi1 += 4 / i;
+	}
+
+	sum = pi - pi1;
+	i -= 4;
+
+	cout <<"i = " << i << " => pi = " << sum;
+}
+
+5-20
+#include <iostream>
+using namespace std;
+
+int main()
+{
+	int i;
+	double s, sum;
+
+	cout << "정상가격			30세일가격" << endl;
+
+	for (i = 10000; i <= 20000; i = i + 1000)
+	{
+		s = i * 0.3;
+		sum = i - s;
+		cout << i << "원				  " << sum << "원" << endl;
+	}
+}
+
+5-21
+#include <iostream>
+using namespace std;
+
+int main()
+{
+	int i, a, b;
+
+	for (i = 1; i <= 5; i++)
+	{
+		cout << "막대 " << i << "의 높이 :";
+		cin >> a;
+
+		if (a >= 1 && a <= 50)
+			for (b = 0; b < a; b++)
+			{
+				cout << "*";
+			}
+		else
+			cout << "잘못입력하셨습니다";
+
+		cout << endl; 
+	}
+}
+
+5-22
+#include <iostream>
+using namespace std;
+
+int main()
+{
+	int i, a, b, c;
+
+	cout << "가격	30%	50%	70%" << endl;
+
+	for (i = 10000; i <= 50000; i = i + 5000)
+	{
+		a = i * 0.3;
+		b = i * 0.5;
+		c = i * 0.7;
+
+		cout << i << "\t" << i - a << "\t" << i - b << "\t" << i - c << endl;
+	}
+}
+
+5-23
+#include <iostream>
+using namespace std;
+
+int main()
+{
+	int a, b, c = 0;
+
+	cout << "정수를 입력하시오. :";
+	cin >> a;
+	cout << "--		----------------" << endl;
+	cout << a << "		1부터 " << a << "까지의 합" << endl;
+	cout << "--		----------------" << endl;
+
+	for (b = 1; b <= a; b++)
+	{
+		c += b;
+		cout << b << "			" << c << endl;
+	}
+}
+
+5-24
+#include <iostream>
+#include <math.h>
+using namespace std;
+#define C 10000000
+
+int main()
+{
+	int i;
+	double sum[10];
+
+	cout << "========================" << endl;
+	cout << "연도		원리금" << endl;
+	cout << "========================" << endl;
+
+	for (i = 0; i < 10; i++)
+	{
+		sum[i] = C * pow(1 + 0.07, i + 1);
+		
+		cout << i+1 << "		" << sum[i] << endl;
+	}
+}
+
+5-26
+int main()
+{
+	int a, b, c;
+
+	cout << "구구단" << endl;
+
+	for (a = 1; a <= 7; a++)
+	{
+		cout << " " << a << "단" << "\t";
+		cout << " " << a+1 << "단" << "\t";
+		cout << " " << a + 2 << "단" << "\t" << endl;
+
+		for (b = 1; b <= 9; b++)
+		{
+			c = a * b;
+			cout << a << "*" << b << "=" << c << "\t";
+			c = (a + 1) * b;
+			cout << a+1 << "*" << b << "=" << c << "\t";
+			c = (a + 2) * b;
+			cout << a+2 << "*" << b << "=" << c << "\t" << endl;
+		}
+		cout << endl;
+	}
+}
+
+5-27
+#include <iostream>
+using namespace std;
+
+int main()
+{
+	char z;
+
+	for (int i = 0; i < 26; i++)
+	{
+		for (z = 'z'; z >= 'a'; z--)
+		{
+			if (z >= 122 - i)
+				cout << z;
+		}
+		cout << endl;
+	}
+}
+
+5-28
+#include <iostream>
+using namespace std;
+
+int main()
+{
+	int a, b, c, d;
+
+	cout << "조건을 만족하는 경우는 다음과 같습니다." << endl;
+	for (a = 0; a <= 5; a++)
+	{
+		for (b = 0; b <= 5; b++)
+		{
+			for (c = 0; c <= 5; c++)
+			{
+				d = (5 * a) + (3 * b) + (2 * c);
+
+				if (d > 23 && d < 25)
+				{
+					cout << "5g 추 " << a << "개 3g 추 " << b << "개 2g 추 "<< c <<"개" << endl;
+					cout << endl;
+				}
+			}
+		}
+	}
+}
+
+5-29
+#include <iostream>
+using namespace std;
+
+int main()
+{
+	int i, sum = 0;
+
+	for (i = 1; ; i++)
+	{
+		sum += i * 3;
+		if (sum > 9999)
+			break;
+	}
+
+	sum -= (i * 3);
+	i--;
+
+	cout << "결과i= " << i << " sum = " << sum << endl;
+
+}
+
+5-30
+#include <iostream>
+using namespace std;
+
+int main()
+{
+	double l, km, sum;
+	char c;
+
+	while (true)
+	{
+		cout << "연료의 양을 입력하시오.<ㅣ> :";
+		cin >> l;
+
+		cout << "주행거리를 입력하시오.<km> :";
+		cin >> km;
+
+		sum = km / l;
+
+		cout << "연비는 " << sum << "km/l입니다." << endl;
+		cout << "다시 계산하시겠습니까?<Y/N> ";
+		cin >> c;
+
+		if (c == 'y' || c == 'Y')
+			continue;
+		else
+			break;
+	}
+}
+
+5-31
+#include <iostream>
+using namespace std;
+
+int main()
+{
+	int n;
+	double sum = 100;
+
+	cout << "현재 인의 양은 100.0 mg 입니다." << endl;
+	cout << endl;
+
+	cout << "몇 일째 되는 날의 인의 최소 잔량을 구할까요? ";
+	cin >> n;
+
+	for (int i = 14; i <= n; i += 14)
+	{
+		sum /= 2;
+		cout << i << "일까지의 인의 최소 잔량은		" << sum << " mg 이상" << endl;
+	}
+
+	cout << endl;
+	cout << ">> 그러므로 " << n << "일 째에는	" << sum << "mg 이상 남아있습니다." << endl;
+}
+
+5-32
+#include <iostream>
+using namespace std;
+#define F 3.14
+
+int main()
+{
+	int i;
+	char c;
+	double r, sum;
+
+	cout << endl;
+	cout << "=============================" << endl;
+	cout << "==   1. 원의 둘레 구하기   ==" << endl;
+	cout << "==   2. 원의 넓이 구하기   ==" << endl;
+	cout << "==   3. 원의 부피 구하기   ==" << endl;
+	cout << "==   4. 그만두기   ==" << endl;
+	cout << "=============================" << endl;
+	cout << "◈ 원하는 내용은? ";
+	cin >> i;
+
+	while (i > 0 && i <= 4)
+	{
+		switch (i)
+		{
+		case 1:
+			cout << endl;
+			cout << ">> 반지름은? ";
+			cin >> r;
+
+			sum = 2 * F * r;
+
+			cout << endl;
+			cout << ">> 반지름이 " << r << "인 원의 둘레는 " << sum << endl;
+			cout << endl;
+			cout << ">> 결과를 확인했으면 아무키나 누르세요. ";
+			cin >> c;
+			main();
+			break;
+
+		case 2:
+			cout << endl;
+			cout << ">> 반지름은? ";
+			cin >> r;
+
+			sum = F * (r * r);
+
+			cout << endl;
+			cout << ">> 반지름이 " << r << "인 원의 넓이는 " << sum << endl;
+			cout << endl;
+			cout << ">> 결과를 확인했으면 아무키나 누르세요. ";
+			cin >> c;
+			main();
+			break;
+
+		case 3:
+			cout << endl;
+			cout << ">> 반지름은? ";
+			cin >> r;
+
+			sum = (4 / 3) * F * (r * r * r);
+
+			cout << endl;
+			cout << ">> 반지름이 " << r << "인 원의 부피는 " << sum << endl;
+			cout << endl;
+			cout << ">> 결과를 확인했으면 아무키나 누르세요. ";
+			cin >> c;
+			main();
+			break;
+
+		case 4:
+			cout << "프로그램을 종료합니다." << endl;
+			break;
+		}
+		break;
+	}
+}
+
+5-33
+#include <iostream>
+using namespace std;
+
+int main()
+{
+	char a;
+
+	while (true)
+	{
+		cout << "알파벳 소문자를 입력하시오 : ";
+		cin >> a;
+
+		if (a == 27)
+			break;
+
+		if (a >= 'a' && a <= 'z')
+		{
+			a = a - 32;
+			cout << "변환된 대문자는 " << a << "입니다" << endl;
+		}
+		else
+		{
+			continue;
+		}
+	}
+}

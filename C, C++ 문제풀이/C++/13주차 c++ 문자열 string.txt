@@ -1,0 +1,164 @@
+공백문자 포함 문자열을 입력받을 시 getline함수를 이용한다.
+getline(입력방식, 입력버퍼시작주소, 딜리미터) 
+getline(cin, string변수, '\n'); //마지막 작은따옴표임을 주의하자.
+
+문제 3
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main()
+{
+	string text;
+	int count = 0;
+
+	cout << "문자열 입력 >> ";
+	getline(cin, text, '\n');
+
+	for (int i = 0; i <= text.length(); i++)
+	{
+		if (text[i] == 'a')
+			count++;
+	}
+	cout << "문자 a는 " << count << "개 있습니다." << endl;
+}
+
+문제 5
+#include <iostream>
+#include <string>
+#include <stdlib.h>
+#include <time.h>
+
+using namespace std;
+
+int main()
+{
+	string text;
+	string a;
+	int n;
+
+	srand((unsigned)time(NULL));
+
+	cout << "아래에 한 줄을 입력하세요.(exit를 입력하면 종료합니다)" << endl;
+	while (true)
+	{
+		cout << ">> ";
+		getline(cin, text, '\n');
+
+		if (text == "exit")
+			break;
+
+		n = rand() % text.length();
+		a = (char)n;
+		text.replace(n, n, a);
+		cout << text << endl;
+	}
+}
+
+문제 6
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main()
+{
+	string text;
+
+	cout << "아래에 한 줄을 입력하세요.(exit를 입력하면 종료합니다)" << endl;
+	while (true)
+	{
+		cout << ">> ";
+		getline(cin, text, '\n');
+
+		if (text == "exit")
+			break;
+
+		for (int i = text.length(); i >= 0; i--)
+		{
+			cout << text[i];
+		}
+		cout << endl;
+	}
+}
+
+문제 9
+#include <iostream>
+#include <string>
+using namespace std;
+
+class Person
+{
+	string name;
+	string tel;
+
+public:
+	Person()
+	{
+		name = " ";
+		tel = " ";
+	}
+
+	string getName()
+	{
+		return name;
+	}
+
+	string getTel()
+	{
+		return tel;
+	}
+
+	void set(string n, string t)
+	{
+		name = n;
+		tel = t;
+	}
+};
+
+int main()
+{
+	Person *a = new Person[3];
+	string name, tel;
+
+	cout << "이름과 전화 번호를 입력해 주세요" << endl;
+	
+	for (int i = 0; i < 3; i++)
+	{
+		cout << "사람 " << i + 1 << "의 이름>> ";
+		name = (a + i)->getName();
+		tel = (a + i)->getTel();
+		getline(cin, name, '\n');
+		cout << "사람 " << i + 1 << "의 번호>> ";
+		getline(cin, tel, '\n');
+		(a + i)->set(name, tel);
+	}
+
+	cout << "모든 사람의 이름은 ";
+	for (int i = 0; i < 3; i++)
+	{
+		cout << (a + i)->getName() << " ";
+	}
+	cout << endl;
+
+	cout << "전화번호를 검색합니다. 이름을 입력하세요>>";
+	cin >> name;
+
+	cout << "전화 번호는 ";
+	for (int i = 0; i < 3; i++)
+	{
+		if (name == (a + i)->getName())
+		{
+			cout << (a + i)->getTel() << endl;
+		}
+	}
+}
+
+-------------------------------
+for (int i = 0; i < 3; i++)
+{
+	cout << "사람 " << i + 1 << ">> ";
+	cin >> name >> tel;
+	(a + i)->set(name, tel);
+}
+//프린트에 있는 출력결과로 하려면 이 입력 코드이다.
+--------------------------------

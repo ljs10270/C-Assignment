@@ -1,0 +1,269 @@
+문제 1.
+#include <stdio.h>
+
+void com1();
+void com2();
+
+static int a = 5, b = 3;
+
+int main()
+{
+	printf("a = %d  b = %d\n", a, b);
+	com1();
+	com2();
+}
+
+void com1()
+{
+	int sum;
+	a = a + 5;
+	printf("com1()에서 a = %d  b = %d\n", a, b);
+	sum = a * b;
+	printf("a * b = %d\n", sum);
+}
+
+void com2()
+{
+	int sum;
+	b = b + 10;
+	printf("com2()에서 a = %d  b = %d\n", a, b);
+	sum = a + b;
+	printf("a + b = %d\n", sum);
+}
+
+문제 2.
+#include <stdio.h>
+
+void com1();
+void com2();
+
+static int a = 5;
+
+int main()
+{
+	printf("a = %d\n", a);
+	com1();
+	com2();
+}
+
+void com1()
+{
+	int sum;
+	sum = a * a;
+	printf("a * a = %d\n", sum);
+}
+
+void com2()
+{
+	int sum;
+	sum = a * a * a;
+	printf("a * a * a = %d\n", sum);
+}
+
+문제 3.
+#include <stdio.h>
+
+void f();
+
+int main()
+{
+	for (int i = 0; i < 5; i++)
+		f();
+}
+
+void f()
+{
+	static int a = 200;
+	int sum, b = 1;
+
+	b++;
+	sum = a + b;
+	printf("a = %d  b = %d  a + b = %d\n", a, b, sum);
+	a = a + 200;
+}
+
+문제 4.
+-문제잘못됨.
+
+문제 5.
+#include <stdio.h>
+
+void sort();
+
+int a = 5000, b = 4000;
+
+int main()
+{
+	printf("함수 호출 전 포인트 점수 %d, %d\n\n", a, b);
+	sort();
+	printf("\n");
+	printf("함수 호출 후 포인트 점수 %d, %d\n", a, b);
+}
+
+void sort()
+{
+	int temp;
+
+	temp = a;
+	a = b;
+	b = temp;
+
+	printf("< sort 함수의 정렬 결과 point1: %d, point2: %d >\n", a, b);
+}
+
+문제 6.
+#include <stdio.h>
+
+void check_balance();
+void deposit();
+void withdraw();
+void PW();
+int check_PW();
+
+int balance, pw;
+
+int main()
+{
+	int a;
+
+	printf("\n");
+	printf("우리 시스템을 방문해 주셔서 감사합니다.\n");
+	printf("4번 비밀번호 설정 후 이용해주세요.\n");
+	printf("===================\n");
+	printf("== 1. 잔액 조회  ==\n");
+	printf("== 2. 입금  ==\n");
+	printf("== 3. 출금  ==\n");
+	printf("== 4. 비밀번호  ==\n");
+	printf("== 5. 그만하기  ==\n");
+	printf("===================\n");
+
+	printf("원하는 서비스를 선택하세요. :");
+	scanf_s("%d", &a);
+
+	switch (a)
+	{
+	case 1:
+		check_balance();
+		break;
+
+	case 2:
+		deposit();
+		break;
+
+	case 3:
+		withdraw();
+		break;
+
+	case 4:
+		PW();
+		break;
+
+	case 5:
+		break;
+	}
+
+	
+}
+
+void PW()
+{
+	int a, b;
+
+	while (1)
+	{
+		printf("비밀번호를 입력하시오 :");
+		scanf_s("%d", &a);
+		printf("비밀번호를 다시 입력하시오 :");
+		scanf_s("%d", &b);
+
+		if (a == b)
+		{
+			printf("비밀번호가 %d로 설정되었습니다\n", a);
+			pw = a;
+			break;
+		}
+		else
+		{
+			printf("잘못입력하셨습니다. 다시 입력해 주세요.\n");
+			continue;
+		}
+	}
+	main();
+}
+
+int check_PW()
+{
+	static int check_PW = 3;
+	int n, z;
+
+	while (1)
+	{
+		printf("비밀번호를 입력하십시오 :");
+		scanf_s("%d", &n);
+
+		if (n != pw)
+		{
+			check_PW--;
+
+				if (check_PW == 0)
+				{
+					printf("신분증을 가지고 서비스 센터로 방분하십시오.\n");
+					printf("처음으로 돌아가시려면 1번을 누르세요  :");
+					scanf_s("%d", &z);
+
+					if (z == 1)
+						main();
+				}
+		}
+		else
+			break;
+	}
+	return 0;
+}
+
+void check_balance()
+{
+	check_PW();
+
+	printf("\n");
+	printf("현재 잔액은 %d원 입니다\n", balance);
+	printf("\n");
+	main();
+}
+
+void deposit()
+{
+	int a;
+
+	printf("\n");
+	printf("입금하실 금액은? :");
+	scanf_s("%d", &a);
+	printf("\n");
+	balance += a;
+
+	printf("\n");
+	printf("입금 후 현재 잔액: %d\n", balance);
+	printf("\n");
+	main();
+}
+
+void withdraw()
+{
+	int a;
+
+	check_PW();
+
+	printf("\n");
+	printf("출금하실 금액은? ");
+	scanf_s("%d", &a);
+
+	if (a > balance)
+		printf("잔액이 부족합니다. 현재 잔액 %d원\n", balance);
+	else
+		balance -= a;
+
+	printf("\n");
+	printf("출금 후 현재 잔액: %d\n", balance);
+	printf("\n");
+	main();
+}

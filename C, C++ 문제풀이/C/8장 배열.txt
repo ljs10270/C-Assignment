@@ -1,0 +1,1080 @@
+8장 배열
+
+문제 1.
+#include <stdio.h>
+#define SIZE 11
+
+int main()
+{
+	int a[SIZE] = { 5,2,3,5,3,2,4,8,9,9,7 };
+	int sum = 0;
+
+	for (int i = 0; i < SIZE; i++)
+		sum += a[i];
+
+	printf("sum = %d", sum);
+}
+
+문제 2.
+#include <stdio.h>
+#define SIZE 10
+
+int main()
+{
+	int a[SIZE];
+	int i, j, temp;
+
+	for (i = 0; i < SIZE; i++)
+		scanf_s("%d", &a[i]);
+
+	for (i = 0; i < SIZE; i++)
+		for(j = i+1; j < 11; j++)
+			if (a[i] < a[j])
+			{
+			temp = a[j];
+			a[j] = a[i];
+			a[i] = temp;
+			}
+
+	for (i = 0; i < SIZE; i++)
+		printf("%5d", a[i]);
+}
+
+문제 3.
+#include <stdio.h>
+#define SIZE 5
+
+int main()
+{
+	int i;
+	float a[SIZE], sum = 0;
+
+
+	for (i = 0; i < SIZE; i++)
+		scanf_s("%f", &a[i]);
+
+	for (i = 0; i < SIZE; i++)
+	{
+		if (i == 0 || i == 1)
+			a[i] *= 0.3;
+
+		else if (i == 2 || i == 3)
+			a[i] *= 0.1;
+
+		else
+			a[i] *= 0.2;
+
+		sum += a[i];
+	}
+
+	printf("가중치를 부여한 점수는 %.1f 점입니다", sum);
+}
+
+문제 4.
+#include <stdio.h>
+#define SIZE 5
+
+int main()
+{
+	int i, year = 1995;
+	float a[SIZE], sum = 0, avg, avg1;
+
+	printf("  년		강우량<inches>\n");
+	printf("==========================\n");
+
+
+	for (i = 0; i < SIZE; i++)
+	{
+		printf("%d년		", year++);
+		scanf_s("%f", &a[i]);
+		sum += a[i];
+	}
+
+	avg = sum / SIZE;
+
+	printf("\n");
+	printf("5년 평균 강우량은 %.1f inches\n", avg);
+}
+
+문제 5.
+#include <stdio.h>
+#define SIZE 50
+
+int main()
+{
+	int i, a[SIZE];
+	int max, min, count = 0, cound = 0;
+	
+	printf("음수 입력시 결과 발표 ! \n");
+	printf("\n");
+
+	for (i = 0; i < SIZE; i++)
+	{
+		printf("정수형 자료값을 입력해주세요 : ");
+		scanf_s("%d", &a[i]);
+		printf("\n");
+
+		if (a[i] == -1)
+			break;
+		
+	}
+
+	max = a[0];
+	min = a[0];
+
+	for (i = 0; i < SIZE; i++)
+	{
+		if (a[i] >= max)
+		{
+			max = a[i];
+			count++;
+		}
+
+		if (a[i] <= min)
+			if(a[i]==-1)
+			{
+				break;
+				min = a[i];
+				cound++;
+			}
+	}
+
+	printf("\n");
+	printf("최대값은 %d이며 위치는 %d번째 방입니다\n", max, count);
+	printf("최소값은 %d이며 위치는 %d번째 방입니다\n", min, cound + 1);
+}
+
+문제 6.
+#include <iostream>
+#include <stdlib.h>
+#define SIZE 101
+using namespace std;
+
+int main()
+{
+	int freq[SIZE] = { 0, };
+	int grade[SIZE];
+	int i;
+
+	for (i = 0; i < SIZE; i++)
+	{
+		grade[i] = rand() % SIZE;
+		freq[grade[i]]++;
+	}
+
+	for (i = 0; i < SIZE; i++)
+	{
+		cout << i << "\t" << freq[i] << endl;
+	}
+
+}
+
+문제 7.
+#include <iostream>
+#include <stdlib.h>
+#define N 10
+using namespace std;
+
+int main()
+{
+	int answer[N] = { 1,3,3,4,2,2,3,1,4,1 };
+	int student[N][N], t_count[N], number[N], ranking[N];
+	int count = 0, i, j;
+
+	cout << "\t\t\t\t ■ 문항별 채점 결과 ■" << endl;
+	cout << "============================================================================================" << endl;
+	cout << "문항	1	2	3	4	5	6	7	8	9	10	점수" << endl;
+	cout << "============================================================================================" << endl;
+
+	for (i = 0; i < N; i++)
+	{
+		number[i] = i + 1;
+		cout << number[i] << "번\t";
+		count = 0;
+		for (j = 0; j < N; j++)
+		{
+			student[i][j] = rand() % 4;
+
+			if (student[i][j] == answer[i])
+			{
+				cout << "O\t";
+				count++;
+			}
+			else
+			{
+				cout << "X\t";
+			}
+		}
+		cout << count << "점" << endl;
+		t_count[i] = count;
+	}
+
+	cout << endl << endl;
+	cout << "\t\t\t\t ■ 정렬 및 석차 ■" << endl;
+	cout << "\t\t\t\t====================" << endl;
+	cout << "\t\t\t\t  번호  점수  석차" << endl;
+	cout << "\t\t\t\t====================" << endl;
+
+	int temp;
+	for (i = 0; i < N; i++)
+	{
+		ranking[i] = i + 1;
+		for (j = i + 1; j < N; j++)
+		{
+			if (t_count[i] < t_count[j])
+			{
+				temp = t_count[j];
+				t_count[j] = t_count[i];
+				t_count[i] = temp;
+
+				temp = number[j];
+				number[j] = number[i];
+				number[i] = temp;
+			}
+		}
+	}
+
+	for (i = 0; i < N; i++)
+	{
+		for (j = 1; j < N; j++)
+		{
+			if (t_count[i] == t_count[j])
+				ranking[j] = ranking[i];
+
+		}
+		cout << "\t\t\t\t   " << number[i] << "번   " << t_count[i] << "점   " << ranking[i] << "등" << endl;
+	}
+}
+
+문제 8.
+#include <iostream>
+#include <stdlib.h>
+#define SIZE 150
+using namespace std;
+
+int main()
+{
+	int a[5][5], i, j, sum = 0;
+
+	for (i = 0; i < 5; i++)
+		for (j = 0; j < 5; j++)
+		{
+			a[i][j] = rand() % SIZE;
+		}
+
+	for (i = 0; i < 5; i++)
+	{
+		cout << a[i][0] << "\t" << a[i][1] << "\t" << a[i][2] << "\t" << a[i][3] << "\t" << a[i][4] << endl;
+	}
+
+	cout << endl;
+	cout << "  외각 요소만 출력한 배열" << endl;
+
+	for (i = 0; i < 5; i++)
+	{
+		if (i == 0)
+		{
+			cout << a[i][0] << "\t" << a[i][1] << "\t" << a[i][2] << "\t" << a[i][3] << "\t" << a[i][4] << endl;
+		}
+		else if (i > 0 && i < 4)
+		{
+			cout << a[i][0] << "\t\t\t\t" << a[i][4] << endl;
+			sum += a[i][0];
+			sum += a[i][4];
+		}
+		else
+			cout << a[i][0] << "\t" << a[i][1] << "\t" << a[i][2] << "\t" << a[i][3] << "\t" << a[i][4] << endl;
+
+		sum += a[0][i];
+		sum += a[4][i];
+	}
+
+	cout << endl << endl;
+	cout << "2차원 배열 외각 요소의 합은 " << sum << " 입니다." << endl;
+}
+
+문제 9.
+#include <iostream>
+#include <stdlib.h>
+#include <math.h>
+#define SIZE 10
+using namespace std;
+
+double mean_f(int a[]);
+double std_dev(int dim[], int s);
+
+int main()
+{
+	int a[SIZE], i;
+	double mean, sumsq, stdev, v;
+
+	cout << endl;
+	cout << "초기화 된 배열 출력" << endl;
+
+	for (i = 0; i < SIZE; i++)
+	{
+		a[i] = rand() % 100;
+		cout << "  " << a[i] << "  ";
+	}
+	cout << endl;
+	cout << "a[]의 시작 주소 : " << &a[0] << endl;
+
+	mean = mean_f(a);
+	sumsq = std_dev(a, SIZE);
+
+	stdev = sqrt(sumsq / SIZE - pow(mean, 2));
+	v = sumsq / SIZE - pow(mean, 2);
+
+	cout << endl;
+	cout << "a[]의 시작 주소 : " << &a[0] << endl;
+	cout << endl;
+
+	cout << "평균 = " << mean << "   분산 = " << v << "   표준편차 = " << stdev << endl;
+
+	for (i = 0; i < SIZE; i++)
+	{
+		cout << "d[" << i << "] = arr[" << i << "] - " << mean << " = " << a[i] - mean << endl;
+	}
+}
+
+double mean_f(int a[])
+{
+	int i;
+	double sum = 0, mean;
+
+	for (i = 0; i < SIZE; i++)
+	{
+		sum += a[i];
+	}
+	mean = sum / SIZE;
+
+	return mean;
+}
+
+double std_dev(int dim[], int s)
+{
+	int i;
+	double sumsq = 0;
+
+	cout << endl;
+	cout << "dim[]의 시작 주소 : " << &dim[0] << endl;
+
+	for (i = 0; i < s; i++)
+	{
+		sumsq += pow(dim[i], 2);
+	}
+
+	return sumsq;
+}
+
+문제 10.
+#include <iostream>
+#define SIZE 20
+using namespace std;
+
+void frqtest(int x[]);
+
+int main()
+{
+	int a[SIZE], i;
+
+	for (i = 0; i < SIZE; i++)
+	{
+		cout << "0~9까지의 수를 입력하시오. :";
+		cin >> a[i];
+
+		if (a[i] >= 10)
+			break;
+	}
+	frqtest(a);
+}
+
+void frqtest(int x[])
+{
+	int max, i, j;
+	int freq[SIZE] = {0, };
+
+	for (i = 0; i < SIZE; i++)
+	{
+		freq[x[i]]++;
+	}
+
+	max = freq[0];
+	
+	for (i = 1; i < SIZE; i++)
+	{
+		if (max < freq[i])
+		{
+			max = freq[i];
+			j = i;
+		}
+	}
+
+	cout << "0 ~ 9 중 가장 많이 나온 수는 " << j << " 이고, " << max << " 번 나왔습니다." << endl;
+}
+
+문제 11.
+#include <stdio.h>
+#define SIZE 10
+
+void bubble_sort(int data[]);
+
+int main()
+{
+	int a[SIZE], i;
+
+	for (i = 0; i < SIZE; i++)
+	{
+		scanf_s("%d", &a[i]);
+	}
+	bubble_sort(a);
+}
+
+void bubble_sort(int data[])
+{
+	int temp, i, j;
+
+	for (i = 0; i < SIZE; i++)
+		for (j = i + 1; j < SIZE; j++)
+		{
+			if (data[i] > data[j])
+			{
+				temp = data[j];
+				data[j] = data[i];
+				data[i] = temp;
+			}
+		}
+
+	for (j = 0; j < SIZE; j++)
+	{
+		printf("%5d", data[j]);
+	}
+}
+
+문제 12.
+#include <stdio.h>
+#define SIZE 10
+
+void print_list(int list[]);
+void selection_sort(int list[]);
+
+int main()
+{
+	int a[SIZE], i;
+
+	for (i = 0; i < SIZE; i++)
+	{
+		scanf_s("%d", &a[i]);
+	}
+	print_list(a);
+	selection_sort(a);
+}
+
+void print_list(int list[])
+{
+	int i;
+	printf("원래의 배열\n");
+	
+	for (i = 0; i < SIZE; i++)
+	{
+		printf("%4d", list[i]);
+	}
+	printf("\n");
+}
+
+void selection_sort(int list[])
+{
+	int temp, i, j;
+
+	printf("정렬된 배열\n");
+
+	for (i = 0; i < SIZE; i++)
+		for (j = i+1; j < SIZE; j++)
+		{
+			if (list[i] > list[j])
+			{
+				temp = list[j];
+				list[j] = list[i];
+				list[i] = temp;
+			}
+		}
+	for (i = 0; i < SIZE; i++)
+		printf("%4d", list[i]);
+}
+
+문제 13.
+#include <iostream>
+#include <stdlib.h>
+#define SIZE 60
+#define START 10
+using namespace std;
+
+int main()
+{
+	int a[SIZE], b[START] = { 0, }, i, j;
+	double sum = 0, avg;
+
+	for (i = 0; i < SIZE; i++)
+	{
+		a[i] = rand() % START;
+		sum += a[i];
+		b[a[i]]++;
+	}
+
+	avg = sum / 60;
+
+	cout << "평균은 " << avg << " 이다." << endl;
+	cout << endl;
+
+	cout << "***********" << endl;
+	cout << "  분 포" << endl;
+	cout << "***********" << endl;
+	cout << "------------------------------------------------" << endl;
+	cout << "\t수\t횟수\t히스토그램" << endl;
+	cout << "------------------------------------------------" << endl;
+	for (i = 0; i < START; i++)
+	{
+		cout << "\t" << i << "\t" << b[i] << "\t";
+		for (j = 0; j < b[i]; j++)
+			cout << "*";
+		cout << endl;
+	}
+
+	cout << "------------------------------------------------" << endl;
+	cout << "분포에서는 수의 빈도 횟수를 나타낸다." << endl;
+
+	int max = b[0];
+
+	for (i = 0; i < START; i++)
+	{
+		if (b[i] >= max)
+		{
+			max = b[i];
+			j = i;
+		}
+	}
+	cout << "분석 결과, 가장 많은 빈도수는 수 " << j << "이<가> " << max << "번 나타났다." << endl;
+}
+
+문제 14
+#include <iostream>
+#include <stdlib.h>
+#include <time.h>
+#define SIZE 20
+using namespace std;
+
+int main()
+{
+	int a[SIZE], n, i;
+
+	srand((unsigned)time(NULL));
+
+	for (i = 0; i < SIZE; i++)
+		a[i] = rand() % SIZE;
+
+	cout << "정렬되지 않은 배열 리스트" << endl;
+
+	for (i = 0; i < SIZE; i++)
+	{
+		cout << a[i] << "  ";
+	}
+	cout << endl << endl;
+
+	cout << "탐색할 값을 입력하시오. : ";
+	cin >> n;
+
+	for (i = 0; i < SIZE; i++)
+	{
+		if (n == a[i])
+		{
+			cout << "탐색 결과 = " << i + 1 << endl;
+			cout << n << "은 " << i + 1 << "번째 위치해 있습니다." << endl;
+			break;
+		}
+	}
+
+}
+
+문제 15.
+#include <iostream>
+#include <stdlib.h>
+#include <time.h>
+#define SIZE 20
+#define COMPARE(x,y) (((x) < (y)) ? -1 : ((x) == (y)) ? 0 : 1)
+using namespace std;
+
+int binary_search(int list[], int n, int key);
+
+int main()
+{
+	int a[SIZE], n, i, max, d;
+
+	srand((unsigned)time(NULL));
+
+	for (i = 0; i < SIZE; i++)
+		a[i] = rand() % SIZE;
+
+	cout << "정렬되지 않은 배열 리스트" << endl;
+
+	for (i = 0; i < SIZE; i++)
+	{
+		cout << a[i] << "  ";
+	}
+	cout << endl << endl;
+
+	cout << "탐색할 값을 입력하시오. : ";
+	cin >> n;
+
+	max = sizeof(a) / sizeof(a[0]);
+	d = binary_search(a, n, max);
+
+	if (d == -1)
+		cout << n << "은(는) 리스트에 없습니다." << endl;
+
+	else
+		cout << n << "은(는) 화면상의 " << d + 1 << "번째에 있습니다." << endl;
+}
+
+int binary_search(int list[], int n, int key)
+{
+	int min = 0;
+	int middle;
+
+	while (min <= key)
+	{
+		middle = (min + key) / 2;
+		switch (COMPARE(list[middle], n))
+		{
+		case -1:
+			min = middle + 1;
+			break;
+		case 0:
+			return middle;
+		case 1:
+			key = middle - 1;
+		}
+	}
+	return -1;
+}
+
+문제 16.
+#include <iostream>
+using namespace std;
+
+void sumcolrow(int a[][5]);
+
+int main()
+{
+	int a[5][5] = { 35,28,67,73,0,
+		      25,32,12,69,0,
+		      97,56,14,23,0,
+		      45,97,48,15,0, };
+
+	int i, j;
+
+	cout << "다음 표의 세로와 가로합, 그리고 모든 합을 구합니다." << endl << endl;
+
+	cout << "--------------------------------------------------" << endl;
+
+	for (i = 0; i < 4; i++)
+	{
+		for (j = 0; j < 4; j++)
+		{
+			cout << "|  " << a[i][j] << "  |";
+		}
+		cout << endl;
+	}
+	cout << "--------------------------------------------------" << endl << endl;
+
+	sumcolrow(a);
+}
+
+void sumcolrow(int a[][5])
+{
+	int i, j;
+
+	for (i = 0; i < 4; i++)
+	{
+		for (j = 0; j < 4; j++)
+		{
+			a[i][4] += a[i][j];
+			a[4][i] += a[j][i];
+		}
+		a[4][4] += a[i][4];
+	}
+
+	printf("위 표의 세로와 가로합, 그리고 모든 합을\n");
+	printf("각각 행과 열의 마지막에 구합니다.\n\n");
+	printf("--------------------------------------------------\n");
+
+	for (i = 0; i < 5; i++)
+	{
+		for (j = 0; j < 5; j++)
+		{
+			cout << "|  " << a[i][j] << "  |";
+		}
+		cout << endl;
+	}
+	cout << "--------------------------------------------------" << endl;
+}
+
+
+문제 17.
+#include <stdio.h>
+
+void hap(int a[][3], int b[][3], int c[][3]);
+void cha(int a[][3], int b[][3], int c[][3]);
+void print(int c[][3]);
+
+int main()
+{
+	int a[4][3] = {35,28,78,25,32,69,97,56,23,45,97,15};
+	int b[4][3] = {125,28,56,34,32,69,57,56,59,45,33,45};
+	int i, j, c[4][3];
+
+	printf("두 행렬의 합과 차를 구하는 프로그램입니다.\n");
+	printf("-----------------------------------------\n");
+
+	for (i = 0; i < 4; i++)
+	{
+		for (j = 0; j < 3; j++)
+		{
+			printf("|%4d |", a[i][j]);
+		}
+		printf("\n");
+	}
+
+	printf("\n");
+
+	for (i = 0; i < 4; i++)
+	{
+		for (j = 0; j < 3; j++)
+		{
+			printf("|%4d |",b[i][j]);
+		}
+		printf("\n");
+	}
+	printf("----------------------------------------\n\n");
+
+	hap(a, b, c);
+	cha(a, b, c);
+}
+
+void hap(int a[][3], int b[][3], int c[][3])
+{
+	int i, j;
+
+	printf(" 위의 두 행렬 합의 결과 값입니다\n");
+	printf("----------------------------------------\n");
+
+	for (i = 0; i < 4; i++)
+	{
+		for (j = 0; j < 3; j++)
+		{
+			c[i][j] = a[i][j] + b[i][j];
+			printf("|%4d |", c[i][j]);
+		}
+		printf("\n");
+	}
+	printf("----------------------------------------\n\n");
+}
+
+void cha(int a[][3], int b[][3], int c[][3])
+{
+	int i, j;
+
+	printf(" 위의 두 행렬 차의 결과 값입니다\n");
+	printf("----------------------------------------\n");
+
+	for (i = 0; i < 4; i++)
+	{
+		for (j = 0; j < 3; j++)
+		{
+			c[i][j] = a[i][j] - b[i][j];
+			printf("|%4d |", c[i][j]);
+		}
+		printf("\n");
+	}
+	printf("----------------------------------------\n");
+}
+
+문제 18.
+#include <stdio.h>
+
+void transpose(int a[][4], int b[][4]);
+
+int main()
+{
+	int a[3][4] = { 2,1,5,3,2,1,6,4,4,2,5,5 };
+	int b[3][4], i, j;
+
+	for (i = 0; i < 3; i++)
+	{
+		for (j = 0; j < 4; j++)
+		{
+			printf("%6d", a[i][j]);
+		}
+		printf("\n");
+	}
+	
+	printf("\n");
+	transpose(a, b);
+}
+
+void transpose(int a[][4], int b[][4])
+{
+	int i, j;
+
+	for (j = 0; j < 4; j++)
+		for (i = 0; i < 3; i++)
+			b[j][i] = a[i][j];
+
+	printf("행렬의 전치행렬은 다음과 같습니다.\n\n");
+
+	for (i = 0; i < 4; i++)
+	{
+		for (j = 0; j < 3; j++)
+		{
+			printf("%6d", b[i][j]);
+		}
+		printf("\n");
+	}
+}
+
+문제 19.
+#include <stdio.h>
+
+void mult(int a[][3], int b[][2], int c[][2]);
+
+int main()
+{
+	int a[2][3] = { 1,2,3,4,5,6 };
+	int b[3][2] = { 1,2,3,4,5,6 };
+	int c[2][2], i, j;
+
+	printf("**** 행렬 A ****\n");
+	for (i = 0; i < 2; i++)
+	{
+		for (j = 0; j < 3; j++)
+		{
+			printf("%5d", a[i][j]);
+		}
+		printf("\n");
+	}
+	printf("\n");
+	
+
+	printf("**** 행렬 B ****\n");
+	for (i = 0; i < 3; i++)
+	{
+		for (j = 0; j < 2; j++)
+		{
+			printf("%5d", b[i][j]);
+		}
+		printf("\n");
+	}
+	printf("\n");
+	
+	mult(a, b, c);
+}
+
+void mult(int a[][3], int b[][2], int c[][2])
+{
+	int i, j;
+
+	printf("**** C = A*B ****\n");
+	for (i = 0; i < 2; i++)
+	{
+		for (j = 0; j < 2; j++)
+		{
+			c[i][j] = 0;
+			for (int k = 0; k < 3; k++)
+			{
+				c[i][j] += a[i][k] * b[k][j];
+			}
+		}
+	}
+
+	for (i = 0; i < 2; i++)
+	{
+		for (j = 0; j < 2; j++)
+		{
+			printf("%5d", c[i][j]);
+		}
+		printf("\n");
+	}
+}
+
+문제 20.
+#include <stdio.h>
+#define N 6
+
+char name[N][7] = {"","노트","연필","지우개","자","볼펜" };
+int unit_cost[N] = { 0,1000,500,300,800,1500 };
+int number[N] = { 0 };
+
+void display_service();
+void display_item();
+void order_sheet();
+void ordeing();
+void cleaning();
+
+int main()
+{
+	printf("\n");
+	display_service();
+}
+
+void display_service()
+{
+	int a;
+
+	printf(">> 환영합니다.\n");
+	printf("=======================================\n");
+	printf("== 1. 상품 주문하기\n");
+	printf("== 2. 주문서 확인하기\n");
+	printf("== 3. 종료하기\n");
+	printf("=======================================\n");
+
+	printf("원하는 서비스를 선택하세요. :");
+	scanf_s("%d", &a);
+
+	switch (a)
+	{
+	case 1:
+		display_item();
+		break;
+
+	case 2:
+		order_sheet();
+		break;
+		
+	case 3:
+		cleaning();
+		break;
+	}
+}
+
+void display_item()
+{
+	printf("\n");
+	printf(">> 상품 주문 서비스입니다.\n");
+	printf("=======================================\n");
+	printf("== 1. 노트		        1000 ==\n");
+	printf("== 2. 연필	        	 500 ==\n");
+	printf("== 3. 지우개		     	 300 ==\n");
+	printf("== 4. 자                         800 ==\n");
+	printf("== 5. 볼펜	        	1500 ==\n");
+	printf("=======================================\n");
+	ordeing();
+}
+
+void ordeing()
+{
+	int a;
+	char c;
+
+	printf("원하는 상품의 번호는? ");
+	scanf_s("%d", &a);
+
+	switch (a)
+	{
+	case 1:
+	{
+		printf("%s를 주문할 갯수는? ", name[1]);
+		scanf_s("%d", &number[1]);
+
+		unit_cost[1] *= number[1];
+		printf("\n");
+		printf(" 주문하신 %s %d개는 총 %d원입니다.\n", name[1], number[1], unit_cost[1]);
+		break;
+	}
+	case 2:
+	{
+		printf("%s를 주문할 갯수는? ", name[2]);
+		scanf_s("%d", &number[2]);
+
+		unit_cost[2] *= number[2];
+		printf("\n");
+		printf(" 주문하신 %s %d개는 총 %d원입니다.\n", name[2], number[2], unit_cost[2]);
+		break;
+	}
+	case 3:
+	{
+		printf("%s를 주문할 갯수는? ", name[3]);
+		scanf_s("%d", &number[3]);
+
+		unit_cost[3] *= number[3];
+		printf("\n");
+		printf(" 주문하신 %s %d개는 총 %d원입니다.\n", name[3], number[3], unit_cost[3]);
+		break;
+	}
+	case 4:
+	{
+		printf("%s를 주문할 갯수는? ", name[4]);
+		scanf_s("%d", &number[4]);
+
+		unit_cost[4] *= number[4];
+		printf("\n");
+		printf(" 주문하신 %s %d개는 총 %d원입니다.\n", name[4], number[4], unit_cost[4]);
+		break;
+	}
+	case 5:
+	{
+		printf("%s를 주문할 갯수는? ", name[5]);
+		scanf_s("%d", &number[5]);
+
+		unit_cost[5] *= number[5];
+		printf("\n");
+		printf(" 주문하신 %s %d개는 총 %d원입니다.\n", name[5], number[5], unit_cost[5]);
+		break;
+	}
+	}
+
+	printf("\n");
+	printf("계속 서비스를 원하시면 아무키나 누르세요. ");
+	c = getchar();
+	printf("\n");
+
+	if (c = getchar())
+	main();
+}
+
+void order_sheet()
+{
+	int i, sum = 0;
+	char c;
+
+	printf("\n");
+	printf("  상품 주문 내역서\n");
+	printf("=======================================\n");
+	printf("상품명		개수		가격\n");
+	printf("---------------------------------------\n");
+
+	for (i = 1; i < N; i++)
+	{
+		if (number[i] > 0)
+		{
+			printf("%s		%d		%d", name[i], number[i], unit_cost[i]);
+			printf("\n");
+			sum += unit_cost[i];
+		}
+	}
+	printf("=======================================\n");
+	printf("총액				%d원\n", sum);
+
+	printf("\n");
+	printf("계속 서비스를 원하시면 아무키나 누르세요. ");
+	c = getchar();
+	printf("\n");
+
+	if (c = getchar())
+	main();
+}
+
+void cleaning()
+{
+	printf("\n");
+	printf("종료합니다.");
+	printf("\n");
+}

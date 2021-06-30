@@ -1,0 +1,259 @@
+c++에서 동적할당(malloc)은 포인터변수 = new 자료형[배열크기]; 이다.
+			                        클래스자료형[배열크기]; 도 가능!
+동적메모리 반환(free)는 delete[]포인터변수; 이다.
+반환할 떄 포인터변수는 동적할당이 된 포인터변수이어야 하며 *를 하지 않는다.
+new 동적할당을 해주었으면 무조건 delete 반환을 해주어야 한다!!!
+
+문제 1
+#include <iostream>
+using namespace std;
+
+class color
+{
+	int red, green, blue;
+
+public:
+	color()
+	{
+		red = green = blue = 0;
+	}
+	color(int r, int g, int b)
+	{
+		red = r;
+		green = g;
+		blue = b;
+	}
+	void setColor(int r, int g, int b)
+	{
+		red = r;
+		green = g;
+		blue = b;
+	}
+	void show()
+	{
+		cout << red << " " << green << " " << blue << endl;
+	}
+};
+
+int main()
+{
+	color screenColor(255, 0, 0);
+	color *p;
+	p = &screenColor;
+	p->show();
+
+	color colors[3];
+	p = colors;
+
+	p->setColor(255, 0, 0);
+	(p + 1)->setColor(0, 255, 0);
+	(p + 2)->setColor(0, 0, 255);
+
+	for (int i = 0; i < 3; i++)
+	{
+		(p + i)->show();
+	}
+}
+
+수업 예제
+#include <iostream>
+using namespace std;
+
+int main()
+{
+	int max, min;
+	cout << "입력할 정수의 개수는?";
+	int n;
+	cin >> n;
+	if (n <= 0)
+		return 0;
+	int *p = new int[n];
+	if (!p)
+	{
+		cout << "메모리를 할당할 수 없습니다";
+		return 0;
+	}
+
+	for (int i = 0; i < n; i++)
+	{
+		cout << i + 1 << "번쨰 정수: ";
+		cin >> p[i];
+	}
+	
+	max = min = p[0];
+	
+	for (int i = 0; i < n; i++)
+	{
+		if (p[i] > max)
+			max = p[i];
+
+		if (p[i] < min)
+			min = p[i];
+	}
+
+	cout << "최대값 = " << max << endl;
+	cout << "최소값 = " << min << endl;
+	delete[]p;
+}
+
+문제 2
+#include <iostream>
+using namespace std;
+
+int main()
+{
+	double avg, sum = 0;
+
+	int *p = new int[5];
+	if (!p)
+	{
+		cout << "메모리를 할당할 수 없습니다";
+		return 0;
+	}
+
+	cout << "정수 5개 입력 >> ";
+	for (int i = 0; i < 5; i++)
+	{
+		cin >> *(p + i);
+		sum += *(p + i);
+	}
+
+	avg = sum / 5;
+	cout << "평균 " << avg << endl;
+	delete[]p;
+}
+
+문제 4
+#include <iostream>
+using namespace std;
+
+class Sample
+{
+	int *p;
+	int size;
+
+public:
+	Sample(int n)
+	{
+		size = n;
+		p = new int[n];
+	}
+	void read()
+	{
+		for (int i = 0; i < size; i++)
+		{
+			cin >> *(p + i);
+		}
+	}
+	void write()
+	{
+		for (int i = 0; i < size; i++)
+		{
+			cout << *(p + i) << " ";
+		}
+	}
+	int big()
+	{
+		int max = *p;
+
+		for (int i = 0; i < size; i++)
+		{
+			if (*(p + i) > max)
+				max = *(p + i);
+		}
+
+		return max;
+	}
+};
+
+int main()
+{
+	Sample s(10);
+	s.read();
+	s.write();
+	cout << endl;
+	cout << "가장 큰 수는 " << s.big() << endl;
+}
+
+문제 7
+#include <iostream>
+using namespace std;
+
+class Circle
+{
+	int radius;
+
+public:
+	void setRedius(int rad)
+	{
+		radius = rad;
+	}
+	double getArea()
+	{
+		return 3.14 * radius * radius;
+	}
+};
+
+int main()
+{
+	Circle a[3];
+	int n, count = 0;
+	
+
+	for (int i = 0; i < 3; i++)
+	{
+		cout << "원 " << i + 1 << "의 반지름 >> ";
+		cin >> n;
+		a[i].setRedius(n);
+
+		if (a[i].getArea() > 100)
+			count++;
+	}
+
+	cout << "면적이 100보다 큰 원은 " << count << "개 입니다." << endl;
+}
+
+문제 8
+#include <iostream>
+using namespace std;
+
+class Circle
+{
+	int radius;
+
+public:
+	void setRedius(int rad)
+	{
+		radius = rad;
+	}
+	double getArea()
+	{
+		return 3.14 * radius * radius;
+	}
+};
+
+int main()
+{
+	Circle a[3];
+	int n, radius, count = 0;
+
+	cout << "생성하고자 하는 원의 개수? ";
+	cin >> n;
+
+	Circle *pArray = new Circle[n];
+
+	for (int i = 0; i < n; i++)
+	{
+		cout << "원 " << i + 1 << "의 반지름 >> ";
+		cin >> radius;
+		(pArray + i)->setRedius(radius);
+
+		if ((pArray + i)->getArea() > 100)
+			count++;
+	}
+
+	cout << "면적이 100보다 큰 원은 " << count << "개 입니다." << endl;
+
+	delete[]pArray;
+}
+
